@@ -9,6 +9,8 @@ Le logiciel produit devra aussi contenir une interface utilisateur minimale pour
 sélectionner à quel jeu l'utilisateur souhaite jouer et s'il désira jouer contre
 une intelligence artificielle ou contre un autre joueur.
 
+La librairie utilisée pour ce projet est `jre1.8.0_25`.
+
 # Classes
 L'ensemble des classes est regroupé dans un paquet nommé `games`.
 
