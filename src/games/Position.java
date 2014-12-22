@@ -1,6 +1,8 @@
 package games;
 
 import java.security.InvalidParameterException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Bruno Buiret (11202344)
@@ -17,6 +19,11 @@ public class Position
 	 * @brief Holds the position's ordinate.
 	 */
 	protected final int y;
+	
+	/**
+	 * @brief Holds the position's pattern.
+	 */
+	protected final static Pattern positionMatcher = Pattern.compile("^@Position\\(([0-9]+), ([0-9]+)\\)$");
 	
 	/**
 	 * @brief Creates a new position.
@@ -70,6 +77,7 @@ public class Position
 	 */
 	public static Position parse(String s)
 	{
-		return new Position(0, 0);
+		Matcher m = Position.positionMatcher.matcher(s);
+		return m.matches() ? new Position(Integer.parseInt(m.group(0)), Integer.parseInt(m.group(1))) : null;
 	}
 }
