@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
+ * @brief This class can be used to hold the logic of a board game.
  */
 public abstract class Game
 {
@@ -18,6 +19,11 @@ public abstract class Game
 	 * @brief Holds a reference to the board.
 	 */
 	protected Board board;
+	
+	/**
+	 * @brief Holds a list of every played action.
+	 */
+	protected List<HistoryEntry> history;
 	
 	/**
 	 * @brief Creates a new game.
@@ -55,6 +61,15 @@ public abstract class Game
 	protected abstract void cancel();
 	
 	/**
+	 * @brief Gets the board of a game.
+	 * @return Reference to the board.
+	 */
+	public Board getBoard()
+	{
+		return this.board;
+	}
+	
+	/**
 	 * @brief Gets a player from a game.
 	 * @param index Index of the player in the list.
 	 * @return Reference to the wanted player.
@@ -67,6 +82,6 @@ public abstract class Game
 			return this.players.get(index);
 		}
 		
-		throw new InvalidParameterException();
+		throw new InvalidParameterException("There are no players");
 	}
 }
