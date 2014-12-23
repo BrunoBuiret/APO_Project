@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
+ * @brief This class holds a 2D position.
  */
 public class Position
 {
@@ -79,5 +80,14 @@ public class Position
 	{
 		Matcher m = Position.positionMatcher.matcher(s);
 		return m.matches() ? new Position(Integer.parseInt(m.group(0)), Integer.parseInt(m.group(1))) : null;
+	}
+	
+	/**
+	 * @brief Gets a string representation of a position.
+	 * @return Position's string representation.
+	 */
+	public String toString()
+	{
+		return String.format("(%d ; %d)", this.x, this.y);
 	}
 }

@@ -1,6 +1,7 @@
 package games;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,11 +28,12 @@ public abstract class Game
 	
 	/**
 	 * @brief Creates a new game.
-	 * @param players List of players for the new game.
 	 */
-	public Game(List<Player> players)
+	public Game()
 	{
-		this.players = players;
+		this.players = new ArrayList<Player>();
+		this.board = null;
+		this.history = new ArrayList<HistoryEntry>();
 	}
 	
 	/**
@@ -44,21 +46,26 @@ public abstract class Game
 	public abstract void run();
 	
 	/**
-	 * @brief Plays
-	 * @todo Add action class.
+	 * @brief Adds a move to a game.
+	 * @param player Reference to the player.
+	 * @param position Reference to the position.
 	 * 
 	 * This method must be implemented by any class representing a game. It will
 	 * contain the logic of an action being played.
 	 */
-	protected abstract void play();
+	protected abstract void play(Player player, Position position);
 	
 	/**
 	 * @brief Cancels the last played action of a game.
-	 * 
-	 * This method must be implemented by any class representing a game. It will
-	 * contain the logic of the cancellation of the last played action.
 	 */
-	protected abstract void cancel();
+	protected void cancel()
+	{
+		if(this.history.size() > 0)
+		{
+			HistoryEntry e = this.history.remove(this.history.size() - 1);
+			this.board.setAt(e.getPosition().getX(), e.getPosition().getY(), null);
+		}
+	}
 	
 	/**
 	 * @brief Gets the board of a game.

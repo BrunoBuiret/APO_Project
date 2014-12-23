@@ -1,31 +1,76 @@
 package games.connectfour;
 
-import java.util.List;
+import java.security.InvalidParameterException;
 
+import games.Board;
 import games.Game;
+import games.HistoryEntry;
 import games.Player;
+import games.Position;
+import games.RandomPlayer;
 
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
+ * @brief 
  */
 public class ConnectFour extends Game
 {
-	public ConnectFour(List<Player> players)
+	/**
+	 * @brief Creates a new connect four game.
+	 */
+	public ConnectFour()
 	{
-		super(players);
-	}
-
-	public void run()
-	{
-	}
-
-	protected void play()
-	{
-	}
-
-	protected void cancel()
-	{
+		super();
+		this.board = new Board(7, 6);
 	}
 	
+	/**
+	 *  @see games.Game.run()
+	 *  @todo Implement the main loop.
+	 */
+	public void run()
+	{
+		// Create the players
+		Player p1 = new RandomPlayer(1, this.board);
+		Player p2 = new RandomPlayer(2, this.board);
+		
+		// Main loop
+		this.play(p1, p1.getNextPosition());
+		this.play(p2, p2.getNextPosition());
+		this.play(p1, p1.getNextPosition());
+		this.play(p2, p2.getNextPosition());
+	}
+	
+	/**
+	 * @see games.Game.play()
+	 */
+	protected void play(Player player, Position position) throws InvalidParameterException
+	{
+		int x = position.getX();
+		int y = 0;
+		
+		while(y + 1 < this.board.getHeight() && this.board.getAt(x, y + 1) == null)
+		{
+			y++;
+		}
+		
+		if(this.board.getAt(x, y) == null)
+		{
+			this.board.setAt(x, y, player);
+			
+			if(y != position.getY())
+			{
+				this.history.add(new HistoryEntry(player, new Position(x, y)));
+			}
+			else
+			{
+				this.history.add(new HistoryEntry(player, position));
+			}
+		}
+		else
+		{
+			throw new InvalidParameterException(String.format("Player #%d already played at ", player.getNumber(), position));
+		}
+	}
 }

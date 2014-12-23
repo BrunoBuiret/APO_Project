@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
+ * @brief This class holds the board of a game.
  */
 public class Board
 {
@@ -136,6 +137,15 @@ public class Board
 	}
 	
 	/**
+	 * @brief Gets which player played at a position.
+	 * @see games.Board.getAt(int, int)
+	 */
+	public Player getAt(Position position) throws InvalidParameterException
+	{
+		return this.getAt(position.getX(), position.getY());
+	}
+	
+	/**
 	 * @brief Sets which player played at a position.
 	 * @param x Position's abscissa.
 	 * @param y Position's ordinate.
@@ -176,11 +186,73 @@ public class Board
 	}
 	
 	/**
+	 * @brief Sets which player played at a position.
+	 * @see games.Board.setAt(int, int, Player)
+	 */
+	public void setAt(Position position, Player player)
+	{
+		this.setAt(position.getX(), position.getY(), player);
+	}
+	
+	/**
 	 * @brief Gets the board itself.
 	 * @return Two-dimension array representing the board.
 	 */
 	public Player[][] toArray()
 	{
 		return this.board;
+	}
+	
+	/**
+	 * @brief Gets a string representation of a board.
+	 * @return Board's string representation.
+	 * @todo Add an interface to get a char representing the player to put on the board.
+	 */
+	public String toString()
+	{
+		StringBuilder s = new StringBuilder();
+		int x, y;
+		
+		// Header of the board
+		s.append("+");
+		
+		for(x = 0; x < this.width; x++)
+		{
+			s.append("-");
+		}
+		
+		s.append("+\n");
+		
+		// 
+		for(y = 0; y < this.height; y++)
+		{
+			s.append("|");
+			
+			for(x = 0; x < this.width; x++)
+			{
+				if(this.board[x][y] != null)
+				{
+					s.append(this.board[x][y].getNumber());
+				}
+				else
+				{
+					s.append(' ');
+				}
+			}
+			
+			s.append("|\n");
+		}
+		
+		// Footer of the board
+		s.append("+");
+		
+		for(x = 0; x < this.width; x++)
+		{
+			s.append("-");
+		}
+		
+		s.append("+\n");
+		
+		return s.toString();
 	}
 }
