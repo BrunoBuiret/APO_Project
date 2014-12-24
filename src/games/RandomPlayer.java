@@ -17,9 +17,9 @@ public class RandomPlayer extends Player
 	/**
 	 * @see games.Player.Player()
 	 */
-	public RandomPlayer(int number, Board board)
+	public RandomPlayer(int number, Game game)
 	{
-		super(number, board);
+		super(number, game);
 		this.random = new Random();
 	}
 	
@@ -30,6 +30,6 @@ public class RandomPlayer extends Player
 	 */
 	public Position getNextPosition()
 	{
-		return new Position(this.random.nextInt((this.board.getWidth() - 1) + 1), this.random.nextInt((this.board.getHeight() - 1) + 1));
+		return new Position(this.random.nextInt((this.game.getBoard().getWidth() - 1) + 1), this.random.nextInt((this.game.getBoard().getHeight() - 1) + 1));
 	}
 }

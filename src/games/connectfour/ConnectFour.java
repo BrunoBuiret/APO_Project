@@ -22,7 +22,7 @@ public class ConnectFour extends Game
 	public ConnectFour()
 	{
 		super();
-		this.board = new Board(7, 6);
+		this.board = new Board(7, 6, new ConnectFourPlayerFormatter());
 	}
 	
 	/**
@@ -32,18 +32,20 @@ public class ConnectFour extends Game
 	public void run()
 	{
 		// Create the players
-		Player p1 = new RandomPlayer(1, this.board);
-		Player p2 = new RandomPlayer(2, this.board);
+		Player p1 = new RandomPlayer(1, this);
+		Player p2 = new RandomPlayer(2, this);
 		
 		// Main loop
 		this.play(p1, p1.getNextPosition());
 		this.play(p2, p2.getNextPosition());
 		this.play(p1, p1.getNextPosition());
 		this.play(p2, p2.getNextPosition());
+		
+		System.out.println(this.board);
 	}
 	
 	/**
-	 * @see games.Game.play()
+	 * @see games.Game.play(Player, Position)
 	 */
 	protected void play(Player player, Position position) throws InvalidParameterException
 	{
@@ -70,7 +72,12 @@ public class ConnectFour extends Game
 		}
 		else
 		{
-			throw new InvalidParameterException(String.format("Player #%d already played at ", player.getNumber(), position));
+			throw new InvalidParameterException(String.format("%s already played at %s", player, position));
 		}
+	}
+	
+	protected boolean check(Player player)
+	{
+		return false;
 	}
 }

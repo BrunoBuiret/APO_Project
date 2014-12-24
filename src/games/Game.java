@@ -68,6 +68,13 @@ public abstract class Game
 	}
 	
 	/**
+	 * @brief Checks if a player won a game.
+	 * @param player Reference to the player.
+	 * @return `true` if the player has won, `false` otherwise.
+	 */
+	protected abstract boolean check(Player player);
+	
+	/**
 	 * @brief Gets the board of a game.
 	 * @return Reference to the board.
 	 */
@@ -90,5 +97,14 @@ public abstract class Game
 		}
 		
 		throw new InvalidParameterException("There are no players");
+	}
+	
+	/**
+	 * @brief Gets the history of a game.
+	 * @return Reference to the history.
+	 */
+	public List<HistoryEntry> getHistory()
+	{
+		return this.history;
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * @author Bruno Buiret (11202344)
- * @version 1.0
+ * @version 1.1
  * @brief This class holds the board of a game.
  */
 public class Board
@@ -26,12 +26,18 @@ public class Board
 	protected Player[][] board;
 	
 	/**
+	 * @brief Holds a formatter to get a player's representation.
+	 */
+	protected PlayerFormatterInterface formatter;
+	
+	/**
 	 * @brief Creates a new board.
 	 * @param width Board's width.
 	 * @param height Board's height.
+	 * @param formatter Reference to a formatter.
 	 * @throws InvalidParameterException
 	 */
-	public Board(int width, int height) throws InvalidParameterException
+	public Board(int width, int height, PlayerFormatterInterface formatter) throws InvalidParameterException
 	{
 		if(width > 0)
 		{
@@ -60,17 +66,20 @@ public class Board
 				this.board[x][y] = null;
 			}
 		}
+		
+		this.formatter = formatter;
 	}
 	
 	/**
 	 * @brief Creates a new board and initializes it with an history.
 	 * @param width Board's width.
 	 * @param height Board's height.
+	 * @param formatter Reference to a formatter.
 	 * @param history History to initialize the board with.
 	 */
-	public Board(int width, int height, List<HistoryEntry> history)
+	public Board(int width, int height, PlayerFormatterInterface formatter, List<HistoryEntry> history)
 	{
-		this(width, height);
+		this(width, height, formatter);
 		
 		for(HistoryEntry e : history)
 		{
@@ -232,7 +241,7 @@ public class Board
 			{
 				if(this.board[x][y] != null)
 				{
-					s.append(this.board[x][y].getNumber());
+					s.append(this.formatter.getPlayerRepresentation(this.board[x][y]));
 				}
 				else
 				{

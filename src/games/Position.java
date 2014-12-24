@@ -79,7 +79,7 @@ public class Position
 	public static Position parse(String s)
 	{
 		Matcher m = Position.positionMatcher.matcher(s);
-		return m.matches() ? new Position(Integer.parseInt(m.group(0)), Integer.parseInt(m.group(1))) : null;
+		return m.matches() ? new Position(Integer.parseInt(m.group(1)), Integer.parseInt(m.group(2))) : null;
 	}
 	
 	/**

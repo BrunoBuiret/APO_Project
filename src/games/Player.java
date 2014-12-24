@@ -13,19 +13,19 @@ public abstract class Player
 	protected final int number;
 	
 	/**
-	 * @brief Holds a reference to the board.
+	 * @brief Holds a reference to the game.
 	 */
-	protected final Board board;
+	protected final Game game;
 	
 	/**
 	 * @brief Creates a new player.
 	 * @param number Number of the player. 
 	 * @param board Reference to the board.
 	 */
-	public Player(int number, Board board)
+	public Player(int number, Game game)
 	{
 		this.number = number;
-		this.board = board;
+		this.game = game;
 	}
 	
 	/**
@@ -45,4 +45,13 @@ public abstract class Player
 	 * if the player is an AI or asks the user for a move if they are human.
 	 */
 	public abstract Position getNextPosition();
+	
+	/**
+	 * @brief Gets a string representation of a player.
+	 * @return Player's string representation.
+	 */
+	public String toString()
+	{
+		return String.format("Player #%d", this.number);
+	}
 }
