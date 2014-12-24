@@ -120,6 +120,9 @@ public class TicTacToe extends Game
 			}
 			while(keepPlaying);
 			
+			// Display the board
+			System.out.println(this.board);
+			
 			// Check if he won
 			if(this.check(this.players.get(playerIndex)))
 			{
