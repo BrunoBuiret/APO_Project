@@ -14,7 +14,8 @@ public class Program
 {
 	public static void main(String[] args)
 	{
-		boolean keepLooping = true; 
+		boolean keepLooping = true;
+		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
 		
 		System.out.println("==[Board games]====");
 		
@@ -29,7 +30,6 @@ public class Program
 			// Initialize vars to determine what the user wants to do 
 			boolean keepScanning = false;
 			int actionId = -1;
-			BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
 			
 			// Asks the user what he wants to do
 			do
@@ -57,21 +57,26 @@ public class Program
 				case 1:
 					ConnectFour c = new ConnectFour();
 					c.run();
-					// DEBUG
-					System.out.println(c.getBoard());
 				break;
 				
 				case 2:
 					TicTacToe t = new TicTacToe();
 					t.run();
-					// DEBUG
-					System.out.println(t.getBoard());
 				break;
 				
 				case 3:
 					keepLooping = false;
 				break;
 			}
+		}
+		
+		// Close the reader
+		try
+		{
+			r.close();
+		}
+		catch (IOException e)
+		{
 		}
 	}
 }

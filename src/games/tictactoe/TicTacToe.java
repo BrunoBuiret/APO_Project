@@ -31,14 +31,17 @@ public class TicTacToe extends Game
 	public void run()
 	{
 		// Create the players
-		Player p1 = new RandomPlayer(1, this.board);
-		Player p2 = new RandomPlayer(2, this.board);
+		boolean keepScanning = false;
+		
+		do
+		{
+			System.out.println("What type of game is it going to be ?");
+			System.out.println(" 1. Human vs Human");
+			System.out.println(" 2. Human vs Human");
+		}
+		while(keepScanning);
 		
 		// Main loop
-		this.play(p1, p1.getNextPosition());
-		this.play(p2, p2.getNextPosition());
-		this.play(p1, p1.getNextPosition());
-		this.play(p2, p2.getNextPosition());
 	}
 
 	/**
