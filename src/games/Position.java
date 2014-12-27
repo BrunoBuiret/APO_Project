@@ -1,5 +1,6 @@
 package games;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,8 +10,13 @@ import java.util.regex.Pattern;
  * @version 1.0
  * @brief This class holds a 2D position.
  */
-public class Position
+public class Position implements Serializable
 {
+	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * @brief Holds the position's abscissa. 
 	 */
@@ -89,5 +95,35 @@ public class Position
 	public String toString()
 	{
 		return String.format("(%d ; %d)", this.x, this.y);
+	}
+	
+	/**
+	 * @brief Compares a position to another.
+	 * @param o References to another object to compare the position to.
+	 * @return `true` if `o` is a Position and its coordinates are the same, `false` otherwise.
+	 */
+	public boolean equals(Object o)
+	{
+		if(o != null)
+		{
+			if(o instanceof Position)
+			{
+				Position p = (Position) o;
+				return this.x == p.getX() && this.y == p.getY();
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * @brief Compares a position to a set of coordinates.
+	 * @param x Coordinates' abscissa.
+	 * @param y Coordinates' ordinate.
+	 * @return `true` if they are equals, `false` otherwise.
+	 */
+	public boolean equals(int x, int y)
+	{
+		return this.x == x && this.y == y;
 	}
 }

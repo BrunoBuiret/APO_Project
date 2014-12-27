@@ -10,9 +10,16 @@ import games.PlayerFormatterInterface;
  */
 public class TicTacToePlayerFormatter implements PlayerFormatterInterface
 {
+	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see games.PlayerFormatterInterface.getPlayerRepresentation(Player)
+	 */
 	public char getPlayerRepresentation(Player p)
 	{
 		return p.getNumber() == 1 ? '✕' : '○';
 	}
-	
 }

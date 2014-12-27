@@ -1,5 +1,6 @@
 package games;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +10,13 @@ import java.util.List;
  * @version 1.0
  * @brief This class can be used to hold the logic of a board game.
  */
-public abstract class Game
+public abstract class Game implements Serializable
 {
+	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * @brief Holds a list of players.
 	 */

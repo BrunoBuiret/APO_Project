@@ -1,12 +1,19 @@
 package games;
 
+import java.io.Serializable;
+
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
  * @brief This class can be used to hold the logic of players and has to be inherited to do so.
  */
-public abstract class Player
+public abstract class Player implements Serializable
 {
+	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * @brief Holds the number of the player.
 	 */

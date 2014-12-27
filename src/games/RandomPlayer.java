@@ -10,6 +10,11 @@ import java.util.Random;
 public class RandomPlayer extends Player
 {
 	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	/**
 	 * @brief Reference to a random numbers generator.
 	 */
 	protected Random random;

@@ -1,5 +1,6 @@
 package games;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.List;
 
@@ -8,8 +9,13 @@ import java.util.List;
  * @version 1.1
  * @brief This class holds the board of a game.
  */
-public class Board
+public class Board implements Serializable
 {
+	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * @brief Holds the board's width.
 	 */

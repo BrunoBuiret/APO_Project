@@ -8,6 +8,11 @@ package games;
 public class PlayerNumberFormatter implements PlayerFormatterInterface
 {
 	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * @see games.PlayerFormatterInterface.getPlayerRepresentation(Player)
 	 * @warning This method only works if the player's number is between 1 and 9.
 	 */

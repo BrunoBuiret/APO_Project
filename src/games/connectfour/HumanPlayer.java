@@ -7,10 +7,15 @@ import games.Game;
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
- * @brief Human Player is inherited so that the line number is ignored.
+ * @brief Human %Player is inherited so that the line number is ignored.
  */
 public class HumanPlayer extends games.HumanPlayer
 {
+	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * @see games.HumanPlayer.HumanPlayer(int, Game)
 	 */

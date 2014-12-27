@@ -7,10 +7,15 @@ import java.util.regex.Pattern;
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
- * @brief Position is inherited to ignore the line number.
+ * @brief Overrides classic position class to redefine `parse()` so that it only captures columns.
  */
 public class Position extends games.Position
 {
+	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * @brief Holds the column's pattern.
 	 */

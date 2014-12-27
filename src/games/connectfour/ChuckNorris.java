@@ -12,15 +12,22 @@ import games.Position;
 public class ChuckNorris extends Player
 {
 	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	/**
 	 * @see games.Player.Player(int, Game)
 	 */
 	public ChuckNorris(int number, Game game)
 	{
 		super(number, game);
+		throw new RuntimeException("This method hasn't been implemented yet.");
 	}
 
 	/**
 	 * @see games.Player.getNextPosition()
+	 * @todo Implement this method.
 	 */
 	public Position getNextPosition()
 	{

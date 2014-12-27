@@ -11,7 +11,6 @@ import games.HistoryEntry;
 import games.HumanPlayer;
 import games.Player;
 import games.Position;
-import games.RandomPlayer;
 
 /**
  * @author Bruno Buiret (11202344)
@@ -20,6 +19,11 @@ import games.RandomPlayer;
  */
 public class TicTacToe extends Game
 {
+	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * @brief Creates a new tic tac toe game.
 	 */
@@ -70,7 +74,6 @@ public class TicTacToe extends Game
 		this.players.add(new HumanPlayer(1, this));
 		
 		// Create the second player
-		/*
 		switch(actionId)
 		{
 			case 1:
@@ -85,10 +88,6 @@ public class TicTacToe extends Game
 				this.players.add(new SmartAI(2, this));
 			break;
 		}
-		*/
-		// DEBUG
-		this.players.add(new RandomPlayer(2, this));
-		// DEBUG
 		
 		// Main loop
 		boolean keepLooping = true;

@@ -12,6 +12,11 @@ import java.io.InputStreamReader;
 public class HumanPlayer extends Player
 {
 	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	/**
 	 * @brief Holds a reference to a buffered reader for user input.
 	 */
 	protected BufferedReader inputReader;
