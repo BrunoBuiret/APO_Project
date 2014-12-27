@@ -121,6 +121,19 @@ public class SmartAI extends AIPlayer
 	 * @brief Evaluates the current score of a board for the minimax algorithm.
 	 * @param b Reference to the board.
 	 * @return Current's board's score.
+	 * 
+	 * This is the heuristic evaluation function of the board. The returned value
+	 * depends on the current state of the board. It associates a score to a 3-in-a-line,
+	 * 2-in-a-line and 1-in-a-line for a sole player, then sums it up.
+	 * 
+	 *  * +100 for each 3-in-a-line for the AI
+	 *  * +10 for each 2-in-a-line for the AI
+	 *  * +1 for each 1-in-a-line for the AI
+	 *  * -100 for each 3-in-a-line for the human player
+	 *  * -10 for each 2-in-a-line for the human player
+	 *  * -1 for each 1-in-a-line for the human player
+	 *  
+	 *  It will then be used to determine the best position to play.
 	 */
 	protected int evaluateScore(Board b)
 	{
@@ -221,7 +234,7 @@ public class SmartAI extends AIPlayer
 				{
 					score *= 10;
 				}
-				else if(score > 1)
+				else if(score > 0)
 				{
 					return 0;
 				}
