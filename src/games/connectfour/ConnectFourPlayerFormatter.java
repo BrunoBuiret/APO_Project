@@ -10,9 +10,11 @@ import games.PlayerFormatterInterface;
  */
 public class ConnectFourPlayerFormatter implements PlayerFormatterInterface
 {
+	/**
+	 * @see games.PlayerFormatterInterface.getPlayerRepresentation(Player)
+	 */
 	public char getPlayerRepresentation(Player p)
 	{
 		return p.getNumber() == 1 ? '●' : '○';
 	}
-	
 }

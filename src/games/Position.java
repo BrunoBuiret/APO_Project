@@ -24,7 +24,7 @@ public class Position
 	/**
 	 * @brief Holds the position's pattern.
 	 */
-	protected final static Pattern positionMatcher = Pattern.compile("^@Position\\(([0-9]+), ([0-9]+)\\)$");
+	protected final static Pattern positionMatcher = Pattern.compile("^@Position\\(([0-9]+),\\s*([0-9]+)\\)$");
 	
 	/**
 	 * @brief Creates a new position.

@@ -30,7 +30,7 @@ public class TicTacToe extends Game
 
 	/**
 	 *  @see games.Game.run()
-	 *  @todo Implement the main loop.
+	 *  @todo Optimize this method because there is a lot of repeated code.
 	 */
 	public void run()
 	{
@@ -40,12 +40,12 @@ public class TicTacToe extends Game
 		int actionId = -1;
 		
 		// Display the adversary menu
-		System.out.println("What type of game is it going to be ?");
+		System.out.println("What type of adversary would you like to play against?");
 		System.out.println(" 1. Human vs Human");
 		System.out.println(" 2. Human vs Stupid AI");
 		System.out.println(" 3. Human vs Smart AI");
 		
-		// Asks the user what he wants
+		// Asks the user what they want
 		do
 		{
 			try
@@ -85,7 +85,9 @@ public class TicTacToe extends Game
 			break;
 		}
 		*/
+		// DEBUG
 		this.players.add(new RandomPlayer(2, this));
+		// DEBUG
 		
 		// Main loop
 		boolean keepLooping = true;
@@ -95,7 +97,12 @@ public class TicTacToe extends Game
 		{
 			boolean keepPlaying = false;
 			
-			// Let the player play
+			// Let the current player play
+			System.out.println(String.format("Current player: %s (%c)",
+				this.players.get(playerIndex),
+				this.board.getFormatter().getPlayerRepresentation(this.players.get(playerIndex))
+			));
+			
 			do
 			{
 				Position position = this.players.get(playerIndex).getNextPosition();
@@ -105,11 +112,12 @@ public class TicTacToe extends Game
 					try
 					{
 						this.play(this.players.get(playerIndex), position);
+						System.out.println(String.format("%s played %s.", this.players.get(playerIndex), position));
 						keepPlaying = false;
 					}
 					catch(InvalidParameterException e)
 					{
-						System.out.println(e.getMessage());
+						System.err.println(e.getMessage());
 						keepPlaying = true;
 					}
 				}
@@ -123,22 +131,20 @@ public class TicTacToe extends Game
 			// Display the board
 			System.out.println(this.board);
 			
-			// Check if he won
+			// Check if the player won or if the game is finished
 			if(this.check(this.players.get(playerIndex)))
 			{
 				System.out.println(String.format("%s has won.", this.players.get(playerIndex)));
 				keepLooping = false;
 			}
-			
-			// Change player
-			playerIndex = ++playerIndex % 2;
-			
-			// Check if the game is finished
-			if(this.history.size() == 9)
+			else if(this.history.size() == this.board.getHeight() * this.board.getWidth())
 			{
 				System.out.println("Nobody won.");
 				keepLooping = false;
 			}
+			
+			// Change player
+			playerIndex = ++playerIndex % this.players.size();
 		}
 	}
 

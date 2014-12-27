@@ -12,11 +12,17 @@ import java.io.InputStreamReader;
 public class HumanPlayer extends Player
 {
 	/**
+	 * @brief Holds a reference to a buffered reader for user input.
+	 */
+	protected BufferedReader inputReader;
+	
+	/**
 	 * @see games.Player.Player()
 	 */
 	public HumanPlayer(int number, Game game)
 	{
 		super(number, game);
+		this.inputReader = new BufferedReader(new InputStreamReader(System.in));
 	}
 
 	/**
@@ -26,15 +32,12 @@ public class HumanPlayer extends Player
 	 */
 	public Position getNextPosition()
 	{
-		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
-		Position p;
+		Position p = null;
 		
 		try
 		{
-			System.out.println("Type the position you want to play [@Position(column, line)]: ");
-			System.out.print("=> ");
-			p = Position.parse(r.readLine());
-			r.close();
+			System.out.print("Type the position you want to play [@Position(column, line)]: ");
+			p = Position.parse(this.inputReader.readLine());
 		}
 		catch(IOException e)
 		{

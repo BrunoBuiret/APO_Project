@@ -106,6 +106,15 @@ public class Board
 	}
 	
 	/**
+	 * @brief Gets a reference to a board's formatter.
+	 * @return Reference to the formatter.
+	 */
+	public PlayerFormatterInterface getFormatter()
+	{
+		return this.formatter;
+	}
+	
+	/**
 	 * @brief Gets which player played at a position.
 	 * @param x Position's abscissa.
 	 * @param y Position's ordinate.
