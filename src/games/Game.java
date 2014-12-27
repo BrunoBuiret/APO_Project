@@ -69,7 +69,7 @@ public abstract class Game implements Serializable
 		if(this.history.size() > 0)
 		{
 			HistoryEntry e = this.history.remove(this.history.size() - 1);
-			this.board.setAt(e.getPosition().getX(), e.getPosition().getY(), null);
+			this.board.setAt(e.getPosition(), null);
 		}
 	}
 	

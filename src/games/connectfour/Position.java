@@ -22,6 +22,7 @@ public class Position extends games.Position
 	protected final static Pattern columnMatcher = Pattern.compile("^@Column\\(([0-9]+)\\)$");
 	
 	/**
+	 * @brief Creates a new position.
 	 * @see games.Position.Position(int, int)
 	 */
 	public Position(int x, int y) throws InvalidParameterException

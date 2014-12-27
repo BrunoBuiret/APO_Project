@@ -1,6 +1,5 @@
 package games.connectfour;
 
-import games.Game;
 import games.Position;
 import games.RandomPlayer;
 
@@ -17,9 +16,10 @@ public class StupidAI extends RandomPlayer
 	private static final long serialVersionUID = 1L;
 	
 	/**
+	 * @brief Creates a new stupid AI for the connect four
 	 * @see games.Player.Player(int, Game)
 	 */
-	public StupidAI(int number, Game game)
+	public StupidAI(int number, ConnectFour game)
 	{
 		super(number, game);
 	}
@@ -30,6 +30,9 @@ public class StupidAI extends RandomPlayer
 	 */
 	public Position getNextPosition()
 	{
-		return new Position(this.random.nextInt((this.game.getBoard().getWidth() - 1) + 1), 0);
+		return new Position(
+			this.random.nextInt(this.game.getBoard().getWidth()),
+			0
+		);
 	}
 }

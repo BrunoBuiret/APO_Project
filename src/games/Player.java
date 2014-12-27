@@ -62,6 +62,11 @@ public abstract class Player implements Serializable
 		return String.format("Player #%d", this.number);
 	}
 	
+	/**
+	 * @brief Compares a player to another object.
+	 * @param o Reference to the object to compare to.
+	 * @return `true` if `o` is a Player and its number is the same, `false` otherwise.
+	 */
 	public boolean equals(Object o)
 	{
 		if(o instanceof Player)

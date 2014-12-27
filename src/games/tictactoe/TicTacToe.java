@@ -27,6 +27,7 @@ public class TicTacToe extends Game
 	
 	/**
 	 * @brief Creates a new tic tac toe game.
+	 * @see games.Game.Game()
 	 */
 	public TicTacToe()
 	{
@@ -35,8 +36,9 @@ public class TicTacToe extends Game
 	}
 
 	/**
-	 *  @see games.Game.run()
-	 *  @todo Optimize this method because there is a lot of repeated code.
+	 * @brief Runs a game of tic tac toe.
+	 * @see games.Game.run()
+	 * @todo Optimize this method because there is a lot of repeated code with the ConnectFour's one.
 	 */
 	public void run()
 	{
@@ -70,6 +72,8 @@ public class TicTacToe extends Game
 			}
 		}
 		while(keepScanning);
+		
+		System.out.println();
 		
 		// The first player is always human
 		this.players.add(new HumanPlayer(1, this));
@@ -157,6 +161,7 @@ public class TicTacToe extends Game
 	}
 
 	/**
+	 * @brief Plays a position on the board.
 	 * @see games.Game.play(Player, Position)
 	 */
 	protected void play(Player player, Position position) throws InvalidParameterException
@@ -173,6 +178,7 @@ public class TicTacToe extends Game
 	}
 	
 	/**
+	 * @brief Checks if a player won a game of tic tac toe.
 	 * @see games.Game.chec(Player)
 	 */
 	protected boolean check(Player p)
@@ -181,9 +187,21 @@ public class TicTacToe extends Game
 		for(int i = 0; i < 3; i++)
 		{
 			if(
-				this.board.getAt(i, 0) == p && this.board.getAt(i, 1) == p && this.board.getAt(i, 2) == p
+				(
+					this.board.getAt(i, 0) != null && this.board.getAt(i, 0).equals(p)
+					&&
+					this.board.getAt(i, 1) != null && this.board.getAt(i, 1).equals(p)
+					&&
+					this.board.getAt(i, 2) != null && this.board.getAt(i, 2).equals(p)
+				)
 				||
-				this.board.getAt(0, i) == p && this.board.getAt(1, i) == p && this.board.getAt(2, i) == p
+				(
+					this.board.getAt(0, i) != null && this.board.getAt(0, i).equals(p)
+					&&
+					this.board.getAt(1, i) != null && this.board.getAt(1, i).equals(p)
+					&&
+					this.board.getAt(2, i) != null && this.board.getAt(2, i).equals(p)
+				)
 			)
 			{
 				return true;
@@ -192,9 +210,21 @@ public class TicTacToe extends Game
 		
 		// Check diagonals
 		if(
-			this.board.getAt(0, 0) == p && this.board.getAt(1, 1) == p && this.board.getAt(2, 2) == p
+			(
+				this.board.getAt(0, 0) != null && this.board.getAt(0, 0).equals(p)
+				&&
+				this.board.getAt(1, 1) != null && this.board.getAt(1, 1).equals(p)
+				&&
+				this.board.getAt(2, 2) != null && this.board.getAt(2, 2).equals(p)
+			)
 			||
-			this.board.getAt(2, 0) == p && this.board.getAt(1, 1) == p && this.board.getAt(0, 2) == p
+			(
+				this.board.getAt(2, 0) != null && this.board.getAt(2, 0).equals(p)
+				&&
+				this.board.getAt(1, 1) != null && this.board.getAt(1, 1).equals(p) 
+				&&
+				this.board.getAt(0, 2) != null && this.board.getAt(0, 2).equals(p)
+			)
 		)
 		{
 			return true;

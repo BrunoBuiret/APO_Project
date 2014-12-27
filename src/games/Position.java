@@ -99,7 +99,7 @@ public class Position implements Serializable
 	
 	/**
 	 * @brief Compares a position to another.
-	 * @param o References to another object to compare the position to.
+	 * @param o References to the other object to compare to.
 	 * @return `true` if `o` is a Position and its coordinates are the same, `false` otherwise.
 	 */
 	public boolean equals(Object o)

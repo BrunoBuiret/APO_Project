@@ -20,6 +20,7 @@ public class RandomPlayer extends AIPlayer
 	protected Random random;
 	
 	/**
+	 * @brief Creates a new AI that plays randomly.
 	 * @see games.Player.Player(int, Game)
 	 */
 	public RandomPlayer(int number, Game game)
@@ -35,6 +36,9 @@ public class RandomPlayer extends AIPlayer
 	 */
 	public Position getNextPosition()
 	{
-		return new Position(this.random.nextInt((this.game.getBoard().getWidth() - 1) + 1), this.random.nextInt((this.game.getBoard().getHeight() - 1) + 1));
+		return new Position(
+			this.random.nextInt(this.game.getBoard().getWidth()),
+			this.random.nextInt(this.game.getBoard().getHeight())
+		);
 	}
 }

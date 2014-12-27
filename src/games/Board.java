@@ -9,7 +9,7 @@ import java.util.List;
  * @version 1.1
  * @brief This class holds the board of a game.
  */
-public class Board implements Serializable, Cloneable
+public class Board implements Cloneable, Serializable
 {
 	/**
 	 * @brief Holds the serialization version number.
@@ -34,7 +34,7 @@ public class Board implements Serializable, Cloneable
 	/**
 	 * @brief Holds a formatter to get a player's representation.
 	 */
-	protected PlayerFormatterInterface formatter;
+	protected final PlayerFormatterInterface formatter;
 	
 	/**
 	 * @brief Creates a new board.
@@ -220,7 +220,7 @@ public class Board implements Serializable, Cloneable
 	
 	/**
 	 * @brief Gets the board itself.
-	 * @return Two-dimension array representing the board.
+	 * @return Two-dimensional array representing the board.
 	 */
 	public Player[][] toArray()
 	{

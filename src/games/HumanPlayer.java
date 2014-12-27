@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
- * @brief THis class represents a human player.
+ * @brief This class represents a human player.
  */
 public class HumanPlayer extends Player
 {
@@ -22,6 +22,7 @@ public class HumanPlayer extends Player
 	protected BufferedReader inputReader;
 	
 	/**
+	 * @brief Creates a new human player.
 	 * @see games.Player.Player(int, Game)
 	 */
 	public HumanPlayer(int number, Game game)

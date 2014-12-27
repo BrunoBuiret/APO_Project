@@ -51,7 +51,7 @@ public class Program
 			}
 			while(keepScanning);
 			
-			// 
+			// Launch the wanted game or exit
 			switch(actionId)
 			{
 				case 1:

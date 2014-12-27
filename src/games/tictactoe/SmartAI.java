@@ -3,7 +3,6 @@ package games.tictactoe;
 import java.util.ArrayList;
 
 import games.Board;
-import games.Game;
 import games.AIPlayer;
 import games.Player;
 import games.Position;
@@ -11,7 +10,8 @@ import games.Position;
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
- * @brief This class represents an AI that "thinks" in order to win the game.
+ * @brief This class represents an AI that "thinks" in order to win a game
+ * of tic tac toe.
  */
 public class SmartAI extends AIPlayer
 {
@@ -21,20 +21,22 @@ public class SmartAI extends AIPlayer
 	private static final long serialVersionUID = 1L;
 	
 	/**
+	 * @brief Creates a new smart AI for the tic tac toe.
 	 * @see games.Player.Player(int, Game)
 	 */
-	public SmartAI(int number, Game game)
+	public SmartAI(int number, TicTacToe game)
 	{
 		super(number, game);
 	}
 	
 	/**
+	 * @brief Determines the next best position to play.
 	 * @see games.Player.getNextPosition()
 	 */
 	public Position getNextPosition()
 	{
 		int[] minimaxResult = this.minimax(this, (Board) this.game.getBoard().clone(), 2);
-		return new Position(minimaxResult[1], minimaxResult[2]);
+		return minimaxResult[1] != -1 && minimaxResult[2] != -1 ? new Position(minimaxResult[1], minimaxResult[2]) : null;
 	}
 	
 	/**
@@ -49,7 +51,7 @@ public class SmartAI extends AIPlayer
 	protected int[] minimax(Player player, Board board, int depth)
 	{
 		// First, determine every available moves by going through the board
-		ArrayList<Position> availablesMoves = new ArrayList<Position>();
+		ArrayList<Position> availableMoves = new ArrayList<Position>();
 		
 		for(int y = 0; y < board.getHeight(); y++)
 		{
@@ -57,7 +59,7 @@ public class SmartAI extends AIPlayer
 			{
 				if(board.getAt(x, y) == null)
 				{
-					availablesMoves.add(new Position(x, y));
+					availableMoves.add(new Position(x, y));
 				}
 			}
 		}
@@ -69,7 +71,7 @@ public class SmartAI extends AIPlayer
 		int bestColumn = -1;
 		int bestRow = -1;
 		
-		if(availablesMoves.isEmpty() || depth == 0)
+		if(availableMoves.isEmpty() || depth == 0)
 		{
 			// We've reached the bottom of the tree or there is no other available move
 			bestScore = this.evaluateScore(board);
@@ -77,7 +79,7 @@ public class SmartAI extends AIPlayer
 		else
 		{
 			// Determine the better position to play
-			for(Position p : availablesMoves)
+			for(Position p : availableMoves)
 			{
 				// Try this move for the current "player"
 				board.setAt(p, player);
@@ -115,6 +117,11 @@ public class SmartAI extends AIPlayer
 		return new int[]{bestScore, bestColumn, bestRow};
 	}
 	
+	/**
+	 * @brief Evaluates the current score of a board for the minimax algorithm.
+	 * @param b Reference to the board.
+	 * @return Current's board's score.
+	 */
 	protected int evaluateScore(Board b)
 	{
 		int score = 0;
@@ -134,6 +141,17 @@ public class SmartAI extends AIPlayer
 		return score;
 	}
 	
+	/**
+	 * @brief Determines the score of a three cells combination.
+	 * @param b Reference to the board.
+	 * @param x1 Abscissa of the first cell.
+	 * @param y1 Ordinate of the first cell.
+	 * @param x2 Abscissa of the second cell.
+	 * @param y2 Ordinate of the second cell.
+	 * @param x3 Abscissa of the third cell.
+	 * @param y3 Ordinate of the third cell.
+	 * @return Three cells combination's score.
+	 */
 	protected int evaluateCombination(Board b, int x1, int y1, int x2, int y2, int x3, int y3)
 	{
 		int score = 0;

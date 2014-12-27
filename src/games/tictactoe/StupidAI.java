@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import games.Board;
-import games.Game;
 import games.AIPlayer;
 import games.Position;
 
@@ -21,14 +20,16 @@ public class StupidAI extends AIPlayer
 	private static final long serialVersionUID = 1L;
 	
 	/**
+	 * @brief Creates a new stupid AI for the tic tac toe.
 	 * @see games.Player.Player(int, Game)
 	 */
-	public StupidAI(int number, Game game)
+	public StupidAI(int number, TicTacToe game)
 	{
 		super(number, game);
 	}
 	
 	/**
+	 * @brief Determines a random position to play adjacent to the last played one.
 	 * @see games.Player.getNextPosition()
 	 */
 	public Position getNextPosition()
@@ -59,6 +60,6 @@ public class StupidAI extends AIPlayer
 		
 		// Return a random one
 		Random r = new Random();
-		return availablePositions.size() > 0 ? availablePositions.get(r.nextInt((availablePositions.size() - 1) + 1)) : null;
+		return availablePositions.size() > 0 ? availablePositions.get(r.nextInt(availablePositions.size())) : null;
 	}
 }

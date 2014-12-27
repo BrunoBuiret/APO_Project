@@ -16,11 +16,12 @@ public class ConnectFourPlayerFormatter implements PlayerFormatterInterface
 	private static final long serialVersionUID = 1L;
 	
 	/**
+	 * @brief Gets a char representation of a player for the connect four.
 	 * @see games.PlayerFormatterInterface.getPlayerRepresentation(Player)
 	 */
 	public char getPlayerRepresentation(Player p)
 	{
-		//return p.getNumber() == 1 ? '●' : '○';
-		return p.getNumber() == 1 ? 'c' : 'o';
+		// return p.getNumber() == 1 ? '●' : '○';
+		return p.getNumber() == 1 ? 'x' : 'o';
 	}
 }

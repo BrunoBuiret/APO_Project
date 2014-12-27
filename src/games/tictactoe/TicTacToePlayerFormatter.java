@@ -16,10 +16,12 @@ public class TicTacToePlayerFormatter implements PlayerFormatterInterface
 	private static final long serialVersionUID = 1L;
 	
 	/**
+	 * @brief Gets a char representation of a player for the tic tac toe.
 	 * @see games.PlayerFormatterInterface.getPlayerRepresentation(Player)
 	 */
 	public char getPlayerRepresentation(Player p)
 	{
+		// return p.getNumber() == 1 ? '✕' : '○';
 		return p.getNumber() == 1 ? 'x' : 'o';
 	}
 }

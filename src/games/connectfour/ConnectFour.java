@@ -26,6 +26,7 @@ public class ConnectFour extends Game
 	
 	/**
 	 * @brief Creates a new connect four game.
+	 * @see games.Game.Game()
 	 */
 	public ConnectFour()
 	{
@@ -34,8 +35,9 @@ public class ConnectFour extends Game
 	}
 	
 	/**
-	 *  @see games.Game.run()
-	 *  @todo Optimize this method because there is a lot of repeated code.
+	 * @brief Runs a game of connect four.
+	 * @see games.Game.run()
+	 * @todo Optimize this method because there is a lot of repeated code with the TicTacToe's one.
 	 */
 	public void run()
 	{
@@ -70,6 +72,8 @@ public class ConnectFour extends Game
 			}
 		}
 		while(keepScanning);
+		
+		System.out.println();
 		
 		// The first player is always human
 		this.players.add(new HumanPlayer(1, this));
@@ -158,7 +162,11 @@ public class ConnectFour extends Game
 	}
 	
 	/**
+	 * @brief Plays a position on the board.
 	 * @see games.Game.play(Player, Position)
+	 * 
+	 * This method takes into account gravity by overriding the ordinate of the given
+	 * position and then placing the pawn.
 	 */
 	protected void play(Player player, Position position) throws InvalidParameterException
 	{
@@ -185,11 +193,13 @@ public class ConnectFour extends Game
 		}
 		else
 		{
-			throw new InvalidParameterException(String.format("%s already played at %s", player, position));
+			throw new InvalidParameterException(String.format("Column %d is already filled.", x));
 		}
 	}
 	
 	/**
+	 * @brief Checks if a player won a game of connect four.
+	 * @see games.Game.check(Player)
 	 * @todo Implement this method.
 	 */
 	protected boolean check(Player player)

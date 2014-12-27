@@ -22,7 +22,7 @@ public class ChuckNorris extends AIPlayer
 	public ChuckNorris(int number, Game game)
 	{
 		super(number, game);
-		throw new RuntimeException("This method hasn't been implemented yet.");
+		throw new RuntimeException("This class hasn't been implemented yet.");
 	}
 
 	/**

@@ -14,7 +14,7 @@ public class PlayerNumberFormatter implements PlayerFormatterInterface
 
 	/**
 	 * @see games.PlayerFormatterInterface.getPlayerRepresentation(Player)
-	 * @warning This method only works if the player's number is between 1 and 9.
+	 * @warning This method only works if the player's number is between 0 and 9.
 	 */
 	public char getPlayerRepresentation(Player p)
 	{
