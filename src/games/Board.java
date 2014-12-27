@@ -224,7 +224,6 @@ public class Board
 	/**
 	 * @brief Gets a string representation of a board.
 	 * @return Board's string representation.
-	 * @todo Add an interface to get a char representing the player to put on the board.
 	 */
 	public String toString()
 	{

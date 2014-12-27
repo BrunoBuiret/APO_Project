@@ -20,7 +20,7 @@ public abstract class Player
 	/**
 	 * @brief Creates a new player.
 	 * @param number Number of the player. 
-	 * @param board Reference to the board.
+	 * @param game Reference to the game.
 	 */
 	public Player(int number, Game game)
 	{

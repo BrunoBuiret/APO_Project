@@ -9,11 +9,10 @@ public class PlayerNumberFormatter implements PlayerFormatterInterface
 {
 	/**
 	 * @see games.PlayerFormatterInterface.getPlayerRepresentation(Player)
-	 * @bug This method only works if the player's number is between 1 and 9.
+	 * @warning This method only works if the player's number is between 1 and 9.
 	 */
 	public char getPlayerRepresentation(Player p)
 	{
-		return (char) ('0' + p.getNumber());
+		return p.getNumber() >= 0 && p.getNumber() <= 9 ? (char) ('0' + p.getNumber()) : '?';
 	}
-	
 }

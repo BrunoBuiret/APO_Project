@@ -16,6 +16,7 @@ import games.RandomPlayer;
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
+ * @brief This class represents a game of tic tac toe.
  */
 public class TicTacToe extends Game
 {
@@ -40,7 +41,7 @@ public class TicTacToe extends Game
 		int actionId = -1;
 		
 		// Display the adversary menu
-		System.out.println("What type of adversary would you like to play against?");
+		System.out.println("What kind of game would you like to play?");
 		System.out.println(" 1. Human vs Human");
 		System.out.println(" 2. Human vs Stupid AI");
 		System.out.println(" 3. Human vs Smart AI");

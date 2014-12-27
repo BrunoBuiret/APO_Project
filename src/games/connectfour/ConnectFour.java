@@ -14,7 +14,7 @@ import games.Position;
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
- * @brief 
+ * @brief This class represents a game of connect four.
  */
 public class ConnectFour extends Game
 {
@@ -39,7 +39,7 @@ public class ConnectFour extends Game
 		int actionId = -1;
 		
 		// Display the adversary menu
-		System.out.println("What type of adversary would you like to play against?");
+		System.out.println("What kind of game would you like to play?");
 		System.out.println(" 1. Human vs Human");
 		System.out.println(" 2. Human vs Stupid AI");
 		System.out.println(" 3. Human vs Smart AI");
@@ -66,7 +66,7 @@ public class ConnectFour extends Game
 		while(keepScanning);
 		
 		// The first player is always human
-		this.players.add(new HumanPlayer(2, this));
+		this.players.add(new HumanPlayer(1, this));
 		
 		// Create the second player
 		switch(actionId)
@@ -179,6 +179,9 @@ public class ConnectFour extends Game
 		}
 	}
 	
+	/**
+	 * @todo Implement this method.
+	 */
 	protected boolean check(Player player)
 	{
 		return false;

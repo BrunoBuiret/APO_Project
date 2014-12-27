@@ -19,6 +19,9 @@ public class ChuckNorris extends Player
 		super(number, game);
 	}
 
+	/**
+	 * @see games.Player.getNextPosition()
+	 */
 	public Position getNextPosition()
 	{
 		return null;

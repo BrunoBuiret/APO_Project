@@ -4,6 +4,11 @@ import java.security.InvalidParameterException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author Bruno Buiret (11202344)
+ * @version 1.0
+ * @brief Position is inherited to ignore the line number.
+ */
 public class Position extends games.Position
 {
 	/**
