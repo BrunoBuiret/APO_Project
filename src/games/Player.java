@@ -26,7 +26,7 @@ public abstract class Player implements Serializable
 	
 	/**
 	 * @brief Creates a new player.
-	 * @param number Number of the player. 
+	 * @param number Player's number.
 	 * @param game Reference to the game.
 	 */
 	public Player(int number, Game game)
@@ -60,5 +60,15 @@ public abstract class Player implements Serializable
 	public String toString()
 	{
 		return String.format("Player #%d", this.number);
+	}
+	
+	public boolean equals(Object o)
+	{
+		if(o instanceof Player)
+		{
+			return this.number == ((Player) o).getNumber();
+		}
+		
+		return false;
 	}
 }

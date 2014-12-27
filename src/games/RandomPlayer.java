@@ -7,7 +7,7 @@ import java.util.Random;
  * @version 1.0
  * @brief This class represents an AI that plays randomly.
  */
-public class RandomPlayer extends Player
+public class RandomPlayer extends AIPlayer
 {
 	/**
 	 * @brief Holds the serialization version number.
@@ -20,7 +20,7 @@ public class RandomPlayer extends Player
 	protected Random random;
 	
 	/**
-	 * @see games.Player.Player()
+	 * @see games.Player.Player(int, Game)
 	 */
 	public RandomPlayer(int number, Game game)
 	{

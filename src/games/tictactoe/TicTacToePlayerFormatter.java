@@ -20,6 +20,6 @@ public class TicTacToePlayerFormatter implements PlayerFormatterInterface
 	 */
 	public char getPlayerRepresentation(Player p)
 	{
-		return p.getNumber() == 1 ? '✕' : '○';
+		return p.getNumber() == 1 ? 'x' : 'o';
 	}
 }

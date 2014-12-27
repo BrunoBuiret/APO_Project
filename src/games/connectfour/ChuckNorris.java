@@ -1,7 +1,7 @@
 package games.connectfour;
 
 import games.Game;
-import games.Player;
+import games.AIPlayer;
 import games.Position;
 
 /**
@@ -9,7 +9,7 @@ import games.Position;
  * @version 1.0
  * @brief This class represents an AI that can win in only three moves.
  */
-public class ChuckNorris extends Player
+public class ChuckNorris extends AIPlayer
 {
 	/**
 	 * @brief Holds the serialization version number.

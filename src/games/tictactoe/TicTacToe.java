@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.InvalidParameterException;
 
+import games.AIPlayer;
 import games.Board;
 import games.Game;
 import games.HistoryEntry;
@@ -95,9 +96,12 @@ public class TicTacToe extends Game
 		
 		while(keepLooping)
 		{
-			boolean keepPlaying = false;
+			// Display the board
+			System.out.print(this.board);
 			
 			// Let the current player play
+			boolean keepPlaying = false;
+			
 			System.out.println(String.format("Current player: %s (%c)",
 				this.players.get(playerIndex),
 				this.board.getFormatter().getPlayerRepresentation(this.players.get(playerIndex))
@@ -113,11 +117,16 @@ public class TicTacToe extends Game
 					{
 						this.play(this.players.get(playerIndex), position);
 						System.out.println(String.format("%s played %s.", this.players.get(playerIndex), position));
+						System.out.println();
 						keepPlaying = false;
 					}
 					catch(InvalidParameterException e)
 					{
-						System.err.println(e.getMessage());
+						if(!(this.players.get(playerIndex) instanceof AIPlayer))
+						{
+							System.err.println(e.getMessage());
+						}
+						
 						keepPlaying = true;
 					}
 				}
@@ -128,17 +137,16 @@ public class TicTacToe extends Game
 			}
 			while(keepPlaying);
 			
-			// Display the board
-			System.out.println(this.board);
-			
 			// Check if the player won or if the game is finished
 			if(this.check(this.players.get(playerIndex)))
 			{
+				System.out.print(this.board);
 				System.out.println(String.format("%s has won.", this.players.get(playerIndex)));
 				keepLooping = false;
 			}
 			else if(this.history.size() == this.board.getHeight() * this.board.getWidth())
 			{
+				System.out.print(this.board);
 				System.out.println("Nobody won.");
 				keepLooping = false;
 			}

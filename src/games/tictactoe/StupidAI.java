@@ -5,7 +5,7 @@ import java.util.Random;
 
 import games.Board;
 import games.Game;
-import games.Player;
+import games.AIPlayer;
 import games.Position;
 
 /**
@@ -13,7 +13,7 @@ import games.Position;
  * @version 1.0
  * @brief This class represents an AI that plays next to the last move.
  */
-public class StupidAI extends Player
+public class StupidAI extends AIPlayer
 {
 	/**
 	 * @brief Holds the serialization version number.

@@ -22,7 +22,7 @@ public class HumanPlayer extends Player
 	protected BufferedReader inputReader;
 	
 	/**
-	 * @see games.Player.Player()
+	 * @see games.Player.Player(int, Game)
 	 */
 	public HumanPlayer(int number, Game game)
 	{

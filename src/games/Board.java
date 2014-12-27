@@ -9,7 +9,7 @@ import java.util.List;
  * @version 1.1
  * @brief This class holds the board of a game.
  */
-public class Board implements Serializable
+public class Board implements Serializable, Cloneable
 {
 	/**
 	 * @brief Holds the serialization version number.
@@ -277,5 +277,25 @@ public class Board implements Serializable
 		s.append("+\n");
 		
 		return s.toString();
+	}
+	
+	/**
+	 * @brief Gets a cloned version of a board.
+	 * @return Reference to the cloned version.
+	 */
+	public Object clone()
+	{
+		Board b = null;
+		
+		try
+		{
+			b = (Board) super.clone();
+		}
+		catch(CloneNotSupportedException e)
+		{
+			return null;
+		}
+		
+		return b;
 	}
 }

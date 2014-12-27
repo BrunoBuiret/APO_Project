@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.InvalidParameterException;
 
+import games.AIPlayer;
 import games.Board;
 import games.Game;
 import games.HistoryEntry;
@@ -55,7 +56,7 @@ public class ConnectFour extends Game
 		{
 			try
 			{
-				System.out.println("=> ");
+				System.out.print("=> ");
 				actionId = Integer.parseInt(r.readLine());
 				keepScanning = actionId != 1 && actionId != 2 && actionId != 3 && actionId != 4;
 			}
@@ -99,9 +100,12 @@ public class ConnectFour extends Game
 		
 		while(keepLooping)
 		{
-			boolean keepPlaying = false;
+			// Display the board
+			System.out.println(this.board);
 			
 			// Let the current player play
+			boolean keepPlaying = false;
+			
 			System.out.println(String.format("Current player: %s (%c)",
 				this.players.get(playerIndex),
 				this.board.getFormatter().getPlayerRepresentation(this.players.get(playerIndex))
@@ -116,12 +120,16 @@ public class ConnectFour extends Game
 					try
 					{
 						this.play(this.players.get(playerIndex), position);
-						System.out.println(String.format("%s played %s.", this.players.get(playerIndex), position));
+						System.out.println(String.format("%s played column %d.", this.players.get(playerIndex), position.getX()));
 						keepPlaying = false;
 					}
 					catch(InvalidParameterException e)
 					{
-						System.err.println(e.getMessage());
+						if(!(this.players.get(playerIndex) instanceof AIPlayer))
+						{
+							System.err.println(e.getMessage());
+						}
+						
 						keepPlaying = true;
 					}
 				}
@@ -131,9 +139,6 @@ public class ConnectFour extends Game
 				}
 			}
 			while(keepPlaying);
-			
-			// Display the board
-			System.out.println(this.board);
 			
 			// Check if the player won or if the game is finished
 			if(this.check(this.players.get(playerIndex)))

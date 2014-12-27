@@ -20,6 +20,7 @@ public class ConnectFourPlayerFormatter implements PlayerFormatterInterface
 	 */
 	public char getPlayerRepresentation(Player p)
 	{
-		return p.getNumber() == 1 ? '●' : '○';
+		//return p.getNumber() == 1 ? '●' : '○';
+		return p.getNumber() == 1 ? 'c' : 'o';
 	}
 }
