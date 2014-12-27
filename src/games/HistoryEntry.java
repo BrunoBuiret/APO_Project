@@ -1,12 +1,19 @@
 package games;
 
+import java.io.Serializable;
+
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
  * @brief This class holds an entry from the history.
  */
-public class HistoryEntry
+public class HistoryEntry implements Serializable
 {
+	/**
+	 * @brief Holds the serialization version number.
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * @brief Holds a reference to the player who played.
 	 */
