@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.InvalidParameterException;
 
-import games.AIPlayer;
 import games.Board;
 import games.Game;
 import games.HistoryEntry;
@@ -15,7 +14,7 @@ import games.Position;
 
 /**
  * @author Bruno Buiret (11202344)
- * @version 1.0
+ * @version 1.1
  * @brief This class represents a game of tic tac toe.
  */
 public class TicTacToe extends Game
@@ -32,132 +31,8 @@ public class TicTacToe extends Game
 	public TicTacToe()
 	{
 		super();
+		this.name = "Tic Tac Toe";
 		this.board = new Board(3, 3, new TicTacToePlayerFormatter());
-	}
-
-	/**
-	 * @brief Runs a game of tic tac toe.
-	 * @see games.Game.run()
-	 * @todo Optimize this method because there is a lot of repeated code with the ConnectFour's one.
-	 */
-	public void run()
-	{
-		// Create the players
-		boolean keepScanning = false;
-		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
-		int actionId = -1;
-		
-		// Display the adversary menu
-		System.out.println("What kind of game would you like to play?");
-		System.out.println(" 1. Human vs Human");
-		System.out.println(" 2. Human vs Stupid AI");
-		System.out.println(" 3. Human vs Smart AI");
-		
-		// Asks the user what they want
-		do
-		{
-			try
-			{
-				System.out.print("=> ");
-				actionId = Integer.parseInt(r.readLine());
-				keepScanning = actionId != 1 && actionId != 2 && actionId != 3;
-			}
-			catch (NumberFormatException e)
-			{
-				keepScanning = true;
-			}
-			catch (IOException e)
-			{
-				keepScanning = true;
-			}
-		}
-		while(keepScanning);
-		
-		System.out.println();
-		
-		// The first player is always human
-		this.players.add(new HumanPlayer(1, this));
-		
-		// Create the second player
-		switch(actionId)
-		{
-			case 1:
-				this.players.add(new HumanPlayer(2, this));
-			break;
-			
-			case 2:
-				this.players.add(new StupidAI(2, this));
-			break;
-			
-			case 3:
-				this.players.add(new SmartAI(2, this));
-			break;
-		}
-		
-		// Main loop
-		boolean keepLooping = true;
-		int playerIndex = 0;
-		
-		while(keepLooping)
-		{
-			// Display the board
-			System.out.print(this.board);
-			
-			// Let the current player play
-			boolean keepPlaying = false;
-			
-			System.out.println(String.format("Current player: %s (%c)",
-				this.players.get(playerIndex),
-				this.board.getFormatter().getPlayerRepresentation(this.players.get(playerIndex))
-			));
-			
-			do
-			{
-				Position position = this.players.get(playerIndex).getNextPosition();
-				
-				if(position != null)
-				{
-					try
-					{
-						this.play(this.players.get(playerIndex), position);
-						System.out.println(String.format("%s played %s.", this.players.get(playerIndex), position));
-						System.out.println();
-						keepPlaying = false;
-					}
-					catch(InvalidParameterException e)
-					{
-						if(!(this.players.get(playerIndex) instanceof AIPlayer))
-						{
-							System.err.println(e.getMessage());
-						}
-						
-						keepPlaying = true;
-					}
-				}
-				else
-				{
-					keepPlaying = true;
-				}
-			}
-			while(keepPlaying);
-			
-			// Check if the player won or if the game is finished
-			if(this.check(this.players.get(playerIndex)))
-			{
-				System.out.print(this.board);
-				System.out.println(String.format("%s has won.", this.players.get(playerIndex)));
-				keepLooping = false;
-			}
-			else if(this.history.size() == this.board.getHeight() * this.board.getWidth())
-			{
-				System.out.print(this.board);
-				System.out.println("Nobody won.");
-				keepLooping = false;
-			}
-			
-			// Change player
-			playerIndex = ++playerIndex % this.players.size();
-		}
 	}
 
 	/**
@@ -231,5 +106,69 @@ public class TicTacToe extends Game
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * @brief Prepares a game of tic tac toe.
+	 * @see games.Game.prepare()
+	 */
+	protected boolean prepare()
+	{
+		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+		boolean keepScanning = false;
+		int actionId = -1;
+		
+		// Asks the user what they want to do
+		System.out.println("What do you want to do?");
+		System.out.println(" 1. New Human vs Human");
+		System.out.println(" 2. New Human vs Stupid AI");
+		System.out.println(" 3. New Human vs Smart AI");
+		System.out.println(" 4. Load a game");
+		System.out.println(" 5. Return");
+		
+		do
+		{
+			try
+			{
+				System.out.print("=> ");
+				actionId = Integer.parseInt(r.readLine());
+				keepScanning = actionId != 1 && actionId != 2 && actionId != 3 && actionId != 4 && actionId != 5;
+			}
+			catch (NumberFormatException e)
+			{
+				keepScanning = true;
+			}
+			catch (IOException e)
+			{
+				keepScanning = true;
+			}
+		}
+		while(keepScanning);
+		
+		// Create the first player who's always human
+		this.players.add(new HumanPlayer(1, this));
+		
+		switch(actionId)
+		{
+			case 1:
+				this.players.add(new HumanPlayer(2, this));
+			break;
+			
+			case 2:
+				this.players.add(new StupidAI(2, this));
+			break;
+				
+			case 3:
+				this.players.add(new SmartAI(2, this));
+			break;
+			
+			case 4:
+				throw new RuntimeException("Loading a game hasn't been implemented yet.");
+			
+			case 5:
+				return false;
+		}
+		
+		return true;
 	}
 }

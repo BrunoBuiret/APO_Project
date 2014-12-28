@@ -23,3 +23,7 @@ au placement des pions
 # Puissance 4
 
 # Morpion
+
+# Problèmes rencontrés
+## BufferedReader
+Problème avec `BufferedReader.close()` qui fait parfois planter le programme.
