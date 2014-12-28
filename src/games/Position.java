@@ -30,7 +30,7 @@ public class Position implements Serializable
 	/**
 	 * @brief Holds the position's pattern.
 	 */
-	protected final static Pattern positionMatcher = Pattern.compile("^@Position\\(([0-9]+),\\s*([0-9]+)\\)$");
+	protected final static Pattern positionMatcher = Pattern.compile("^Position\\(([0-9]+),\\s*([0-9]+)\\)$");
 	
 	/**
 	 * @brief Creates a new position.
@@ -95,35 +95,5 @@ public class Position implements Serializable
 	public String toString()
 	{
 		return String.format("(%d ; %d)", this.x, this.y);
-	}
-	
-	/**
-	 * @brief Compares a position to another.
-	 * @param o References to the other object to compare to.
-	 * @return `true` if `o` is a Position and its coordinates are the same, `false` otherwise.
-	 */
-	public boolean equals(Object o)
-	{
-		if(o != null)
-		{
-			if(o instanceof Position)
-			{
-				Position p = (Position) o;
-				return this.x == p.getX() && this.y == p.getY();
-			}
-		}
-		
-		return false;
-	}
-	
-	/**
-	 * @brief Compares a position to a set of coordinates.
-	 * @param x Coordinates' abscissa.
-	 * @param y Coordinates' ordinate.
-	 * @return `true` if they are equals, `false` otherwise.
-	 */
-	public boolean equals(int x, int y)
-	{
-		return this.x == x && this.y == y;
 	}
 }

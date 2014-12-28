@@ -47,6 +47,7 @@ public class SmartAI extends AIPlayer
 	 * @return Array containing the best obtained score while searching, and then
 	 * the best next column and row to play.
 	 * @see http://www.ntu.edu.sg/home/ehchua/programming/java/JavaGame_TicTacToe_AI.html
+	 * @todo Implement the alpha / beta pruning. 
 	 */
 	protected int[] minimax(Player player, Board board, int depth)
 	{
@@ -182,7 +183,7 @@ public class SmartAI extends AIPlayer
 			{
 				if(score == 1)
 				{
-					score = 10;
+					score *= 10;
 				}
 				else if(score == -1)
 				{
@@ -197,7 +198,7 @@ public class SmartAI extends AIPlayer
 			{
 				if(score == -1)
 				{
-					score = -10;
+					score *= 10;
 				}
 				else if(score == 1)
 				{

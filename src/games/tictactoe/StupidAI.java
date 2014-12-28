@@ -31,6 +31,7 @@ public class StupidAI extends AIPlayer
 	/**
 	 * @brief Determines a random position to play adjacent to the last played one.
 	 * @see games.Player.getNextPosition()
+	 * @warning This method will fail if the AI is the first to play.
 	 */
 	public Position getNextPosition()
 	{
@@ -47,8 +48,6 @@ public class StupidAI extends AIPlayer
 					(x >= 0 && y >= 0)
 					&&
 					(x < board.getWidth() && y < board.getHeight())
-					&&
-					!lastPosition.equals(x, y)
 					&&
 					board.getAt(x, y) == null
 				)

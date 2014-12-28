@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -135,6 +136,7 @@ public abstract class Game implements Serializable
 					System.out.println(" 1. Play");
 					System.out.println(" 2. Save");
 					System.out.println(" 3. Quit");
+					List<Integer> possibleChoices = Arrays.asList(1, 2, 3);
 					
 					do
 					{
@@ -142,7 +144,7 @@ public abstract class Game implements Serializable
 						{
 							System.out.print("=> ");
 							actionId = Integer.parseInt(r.readLine());
-							keepScanning = actionId != 1 && actionId != 2 && actionId != 3;
+							keepScanning = !possibleChoices.contains(actionId);
 						}
 						catch (NumberFormatException e)
 						{
@@ -246,14 +248,26 @@ public abstract class Game implements Serializable
 			// Change player
 			playerIndex = ++playerIndex % this.players.size();
 		}
+	}
+	
+	/**
+	 * @brief Saves the current state of a game.
+	 * @param filename File name.
+	 * @todo Implement this method.
+	 */
+	public void save(String filename)
+	{
 		
-		try
-		{
-			r.close();
-		}
-		catch (IOException e)
-		{
-		}
+	}
+	
+	/**
+	 * @brief Loads a game.
+	 * @param filename File name.
+	 * @todo Implement this method.
+	 */
+	public void load(String filename)
+	{
+		
 	}
 	
 	/**

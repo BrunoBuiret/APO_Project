@@ -34,7 +34,7 @@ public class HumanPlayer extends games.HumanPlayer
 		
 		try
 		{
-			System.out.print("Type which column you want to play [@Column(column)]: ");
+			System.out.print("Type which column you want to play [Column(column)]: ");
 			p = Position.parse(this.inputReader.readLine());
 		}
 		catch(IOException e)

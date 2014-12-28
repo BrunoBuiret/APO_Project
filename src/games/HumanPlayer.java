@@ -42,7 +42,7 @@ public class HumanPlayer extends Player
 		
 		try
 		{
-			System.out.print("Type the position you want to play [@Position(column, line)]: ");
+			System.out.print("Type the position you want to play [Position(column, line)]: ");
 			p = Position.parse(this.inputReader.readLine());
 		}
 		catch(IOException e)

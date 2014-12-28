@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
 
 import games.connectfour.ConnectFour;
 import games.tictactoe.TicTacToe;
@@ -30,6 +32,7 @@ public class Program
 			// Initialize vars to determine what the user wants to do 
 			boolean keepScanning = false;
 			int actionId = -1;
+			List<Integer> possibleChoices = Arrays.asList(1, 2, 3);
 			
 			// Asks the user what he wants to do
 			do
@@ -38,7 +41,7 @@ public class Program
 				{
 					System.out.print("=> ");
 					actionId = Integer.parseInt(r.readLine());
-					keepScanning = actionId != 1 && actionId != 2 && actionId != 3;
+					keepScanning = !possibleChoices.contains(actionId);
 				}
 				catch (NumberFormatException e)
 				{
@@ -68,15 +71,6 @@ public class Program
 					keepLooping = false;
 				break;
 			}
-		}
-		
-		// Close the reader
-		try
-		{
-			r.close();
-		}
-		catch (IOException e)
-		{
 		}
 	}
 }

@@ -19,7 +19,7 @@ public class Position extends games.Position
 	/**
 	 * @brief Holds the column's pattern.
 	 */
-	protected final static Pattern columnMatcher = Pattern.compile("^@Column\\(([0-9]+)\\)$");
+	protected final static Pattern columnMatcher = Pattern.compile("^Column\\(([0-9]+)\\)$");
 	
 	/**
 	 * @brief Creates a new position.

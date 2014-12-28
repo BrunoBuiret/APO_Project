@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.InvalidParameterException;
+import java.util.Arrays;
+import java.util.List;
 
 import games.Board;
 import games.Game;
@@ -99,6 +101,7 @@ public class ConnectFour extends Game
 		System.out.println(" 4. New Human vs Chuck Norris");
 		System.out.println(" 5. Load a game");
 		System.out.println(" 6. Return");
+		List<Integer> possibleChoices = Arrays.asList(1, 2, 3, 4, 5, 6);
 		
 		do
 		{
@@ -106,7 +109,7 @@ public class ConnectFour extends Game
 			{
 				System.out.print("=> ");
 				actionId = Integer.parseInt(r.readLine());
-				keepScanning = actionId != 1 && actionId != 2 && actionId != 3 && actionId != 4 && actionId != 5 && actionId != 6;
+				keepScanning = !possibleChoices.contains(actionId);
 			}
 			catch (NumberFormatException e)
 			{
