@@ -65,7 +65,7 @@ public class SmartAI extends AIPlayer
 		}
 		
 		// Then, initialize vars to memorize the best next position to play
-		Player oppositePlayer = this.game.getPlayer((this.number + 1) % 2);
+		Player oppositePlayer = this.game.getPlayer(player.getNumber() % 2);
 		int bestScore = player.equals(this) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 		int currentScore;
 		int bestColumn = -1;
@@ -140,16 +140,16 @@ public class SmartAI extends AIPlayer
 		int score = 0;
 		
 		// Rows
-		score += evaluateCombination(b, 0, 0, 0, 1, 0, 2);
-		score += evaluateCombination(b, 1, 0, 1, 1, 1, 2);
-		score += evaluateCombination(b, 2, 0, 2, 1, 2, 2);
+		score += this.evaluateCombination(b, 0, 0, 0, 1, 0, 2);
+		score += this.evaluateCombination(b, 1, 0, 1, 1, 1, 2);
+		score += this.evaluateCombination(b, 2, 0, 2, 1, 2, 2);
 		// Columns
-		score += evaluateCombination(b, 0, 0, 1, 0, 2, 0);
-		score += evaluateCombination(b, 0, 1, 1, 1, 2, 1);
-		score += evaluateCombination(b, 0, 2, 1, 2, 2, 2);
+		score += this.evaluateCombination(b, 0, 0, 1, 0, 2, 0);
+		score += this.evaluateCombination(b, 0, 1, 1, 1, 2, 1);
+		score += this.evaluateCombination(b, 0, 2, 1, 2, 2, 2);
 		// Diagonals
-		score += evaluateCombination(b, 0, 0, 1, 1, 2, 2);
-		score += evaluateCombination(b, 0, 2, 1, 1, 2, 0);
+		score += this.evaluateCombination(b, 0, 0, 1, 1, 2, 2);
+		score += this.evaluateCombination(b, 0, 2, 1, 1, 2, 0);
 		
 		return score;
 	}
