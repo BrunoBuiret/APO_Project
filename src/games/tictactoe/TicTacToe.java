@@ -22,11 +22,6 @@ import games.Position;
 public class TicTacToe extends Game
 {
 	/**
-	 * @brief Holds the serialization version number.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
 	 * @brief Creates a new tic tac toe game.
 	 * @see games.Game.Game()
 	 */

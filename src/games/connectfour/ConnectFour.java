@@ -21,11 +21,6 @@ import games.Position;
 public class ConnectFour extends Game
 {
 	/**
-	 * @brief Holds the serialization version number.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
 	 * @brief Creates a new connect four game.
 	 * @see games.Game.Game()
 	 */

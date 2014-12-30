@@ -3,7 +3,6 @@ package games;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,13 +13,8 @@ import java.util.List;
  * @version 1.1
  * @brief This class can be used to hold the logic of a board game.
  */
-public abstract class Game implements Serializable
+public abstract class Game
 {
-	/**
-	 * @brief Holds the serialization version number.
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	/**
 	 * @brief Holds the name of the game.
 	 */
