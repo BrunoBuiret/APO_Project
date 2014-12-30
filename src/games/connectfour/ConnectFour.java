@@ -75,12 +75,157 @@ public class ConnectFour extends Game
 	/**
 	 * @brief Checks if a player won a game of connect four.
 	 * @see games.Game.check(Player)
-	 * @todo Implement this method.
 	 */
 	protected boolean check(Player player)
 	{
-		// Check horizontals, verticals, diagonals
+	    int i;
+	    
+	    // Check rows
+	    for(i = 0; i < 6; i++)
+	    {
+	        if(this.checkRow(player, i))
+	        {
+	            return true;
+	        }
+	    }
+	    
+	    // Check columns
+	    for(i = 0; i < 7; i++)
+	    {
+	        if(this.checkColumn(player, i))
+	        {
+	            return true;
+	        }
+	    }
+	    
+	    // Check diagonals
+	    for(int j = 5; j > 2; j--)
+	    {
+	        for(i = 0; i < 4; i++)
+	        {
+	            if(
+                    // Ascending order
+                    this.checkDiagonal(player, new int[]{i, j}, new int[]{i + 1, j - 1}, new int[]{i + 2, j - 2}, new int[]{i + 3, j - 3})
+                    ||
+                    // Descending order
+                    this.checkDiagonal(player, new int[]{6 - i, j}, new int[]{6 - i - 1, j - 1}, new int[]{6 - i - 2, j - 2}, new int[]{6 - i - 3, j - 3})
+                )
+	            {
+	                return true;
+	            }
+	        }
+	    }
+	    
 		return false;
+	}
+	
+	/**
+	 * @brief Helper method for the `check()` method.
+	 * @param p Reference to the player to check for.
+	 * @param row Index of the row.
+	 * @return `true` if the player won, `false` otherwise.
+	 */
+	protected boolean checkRow(Player player, int row)
+	{
+	    boolean previousCellWasOwned = false;
+	    int consecutiveCells = 0;
+	    
+	    for(int column = 0; column < 7; column++)
+	    {
+	        if(this.board.getAt(column, row) != null)
+	        {
+	            if(this.board.getAt(column, row).equals(player))
+	            {
+	                consecutiveCells++;
+	                previousCellWasOwned = true;
+	            }
+	            else
+	            {
+	                consecutiveCells = 0;
+	                previousCellWasOwned = false;
+	            }
+	        }
+	        else
+	        {
+	            consecutiveCells = 0;
+	            previousCellWasOwned = false;
+	        }
+	        
+	        if(consecutiveCells >= 4)
+	        {
+	            return true;
+	        }
+	    }
+	    
+	    return false;
+	}
+	
+	/**
+	 * @brief Helper method for the `check()` method.
+	 * @param p Reference to the player to check for.
+	 * @param column Index of the column
+	 * @return `true` if the player won, `false` otherwise.
+	 */
+	protected boolean checkColumn(Player player, int column)
+	{
+	    boolean previousCellWasOwned = false;
+        int consecutiveCells = 0;
+        
+        for(int row = 0; row < 6; row++)
+        {
+            if(this.board.getAt(column, row) != null)
+            {
+                if(this.board.getAt(column, row).equals(player))
+                {
+                    consecutiveCells++;
+                    previousCellWasOwned = true;
+                }
+                else
+                {
+                    consecutiveCells = 0;
+                    previousCellWasOwned = false;
+                }
+            }
+            else
+            {
+                consecutiveCells = 0;
+                previousCellWasOwned = false;
+            }
+            
+            if(consecutiveCells >= 4)
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+	
+	/**
+	 * @brief Helper method for the `check()` method.
+	 * @param player Reference to the player to check for.
+	 * @param firstCell First index is the abscissa of the first cell, second index is the ordinate of the first cell.
+	 * @param secondCell First index is the abscissa of the second cell, second index is the ordinate of the second cell.
+	 * @param thirdCell First index is the abscissa of the third cell, second index is the ordinate of the third cell.
+	 * @param fourthCell First index is the abscissa of the fourth cell, second index is the ordinate of the fourth cell.
+	 * @return `true` if the player won, `false` otherwise.
+	 */
+	protected boolean checkDiagonal(Player player, int[] firstCell, int[] secondCell, int[] thirdCell, int[] fourthCell)
+	{
+	    if(
+            this.board.getAt(firstCell[0], firstCell[1]) != null && this.board.getAt(firstCell[0], firstCell[1]).equals(player)
+            &&
+            this.board.getAt(secondCell[0], secondCell[1]) != null && this.board.getAt(secondCell[0], secondCell[1]).equals(player)
+            &&
+            this.board.getAt(thirdCell[0], thirdCell[1]) != null && this.board.getAt(thirdCell[0], thirdCell[1]).equals(player)
+            &&
+            this.board.getAt(fourthCell[0], fourthCell[1]) != null && this.board.getAt(fourthCell[0], fourthCell[1]).equals(player)
+        )
+	    {
+	        return true;
+	    }
+	    
+	    return false;
 	}
 	
 	/**

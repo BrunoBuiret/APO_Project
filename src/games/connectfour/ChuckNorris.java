@@ -1,5 +1,6 @@
 package games.connectfour;
 
+import games.Board;
 import games.Game;
 import games.AIPlayer;
 import games.Position;
@@ -22,15 +23,17 @@ public class ChuckNorris extends AIPlayer
 	public ChuckNorris(int number, Game game)
 	{
 		super(number, game);
-		throw new RuntimeException("This class hasn't been implemented yet.");
 	}
 
 	/**
 	 * @see games.Player.getNextPosition()
-	 * @todo Implement this method.
 	 */
 	public Position getNextPosition()
 	{
-		return null;
+	    Board b = this.game.getBoard();
+	    b.setAt(0, 5, this);
+	    b.setAt(0, 4, this);
+	    b.setAt(0, 3, this);
+	    return new Position(0, 2);
 	}
 }

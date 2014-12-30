@@ -274,6 +274,7 @@ public abstract class Game implements Serializable
             {
                 System.out.print(this.board);
                 System.out.println(String.format("%s has won.", this.players.get(playerIndex)));
+                System.out.println();
                 keepLooping = false;
             }
             // Or if it game is a draw
@@ -281,6 +282,7 @@ public abstract class Game implements Serializable
             {
                 System.out.print(this.board);
                 System.out.println("Nobody won.");
+                System.out.println();
                 keepLooping = false;
             }
             
