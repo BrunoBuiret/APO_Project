@@ -47,7 +47,6 @@ public class SmartAI extends AIPlayer
      * @return Array containing the best obtained score while searching, and
      * then the best next column and row to play.
      * @see http://www.ntu.edu.sg/home/ehchua/programming/java/JavaGame_TicTacToe_AI.html
-     * @todo Implement the alpha / beta pruning.
      */
     protected int[] minimax(Player player, Board board, int depth, int alpha, int beta)
     {
