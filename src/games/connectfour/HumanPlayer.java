@@ -11,12 +11,12 @@ import games.Game;
  */
 public class HumanPlayer extends games.HumanPlayer
 {
-	/**
-	 * @brief Holds the serialization version number.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
+    /**
+     * @brief Holds the serialization version number.
+     */
+    private static final long serialVersionUID = 2282263430003162923L;
+
+    /**
 	 * @see games.HumanPlayer.HumanPlayer(int, Game)
 	 */
 	public HumanPlayer(int number, Game game)

@@ -54,6 +54,9 @@ public class Program
 			}
 			while(keepScanning);
 			
+			// Skip a line to keep the interface easily readable
+			System.out.println();
+			
 			// Launch the wanted game or exit
 			switch(actionId)
 			{

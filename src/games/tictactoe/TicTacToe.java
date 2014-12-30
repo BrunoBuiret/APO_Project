@@ -21,7 +21,12 @@ import games.Position;
  */
 public class TicTacToe extends Game
 {
-	/**
+    /**
+     * @brief Holds the serialization version number.
+     */
+    private static final long serialVersionUID = -7499559854035445966L;
+
+    /**
 	 * @brief Creates a new tic tac toe game.
 	 * @see games.Game.Game()
 	 */
@@ -143,6 +148,9 @@ public class TicTacToe extends Game
 		}
 		while(keepScanning);
 		
+		// Skip a line to keep the interface easily readable
+		System.out.println();
+		
 		// Create the first player who's always human
 		this.players.add(new HumanPlayer(1, this));
 		
@@ -161,7 +169,7 @@ public class TicTacToe extends Game
 			break;
 			
 			case 4:
-				throw new RuntimeException("Loading a game hasn't been implemented yet.");
+				return this.loadGame();
 			
 			case 5:
 				return false;

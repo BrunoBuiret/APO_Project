@@ -10,14 +10,15 @@ import games.PlayerFormatterInterface;
  */
 public class ConnectFourPlayerFormatter implements PlayerFormatterInterface
 {
-	/**
-	 * @brief Holds the serialization version number.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
+    /**
+     * @brief Holds the serialization version number.
+     */
+    private static final long serialVersionUID = 1790428708691284266L;
+
+    /**
 	 * @brief Gets a char representation of a player for the connect four.
 	 * @see games.PlayerFormatterInterface.getPlayerRepresentation(Player)
+	 * @todo Improve by determining if the OS is Windows or Linux to put the normal or better chars.
 	 */
 	public char getPlayerRepresentation(Player p)
 	{

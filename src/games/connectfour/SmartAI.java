@@ -11,12 +11,12 @@ import games.Position;
  */
 public class SmartAI extends AIPlayer
 {
-	/**
-	 * @brief Holds the serialization version number.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
+    /**
+     * @brief Holds the serialization version number.
+     */
+    private static final long serialVersionUID = -8498784357565703054L;
+
+    /**
 	 * @brief Creates a new smart AI for the connect four.
 	 * @see games.Player.Player(int, Game)
 	 */

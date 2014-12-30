@@ -14,12 +14,12 @@ import games.Position;
  */
 public class StupidAI extends AIPlayer
 {
-	/**
-	 * @brief Holds the serialization version number.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
+    /**
+     * @brief Holds the serialization version number.
+     */
+    private static final long serialVersionUID = 5644773956666028724L;
+
+    /**
 	 * @brief Creates a new stupid AI for the tic tac toe.
 	 * @see games.Player.Player(int, Game)
 	 */

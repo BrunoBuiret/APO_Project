@@ -20,7 +20,12 @@ import games.Position;
  */
 public class ConnectFour extends Game
 {
-	/**
+    /**
+     * @brief Holds the serialization version number.
+     */
+    private static final long serialVersionUID = 8308672741825018981L;
+
+    /**
 	 * @brief Creates a new connect four game.
 	 * @see games.Game.Game()
 	 */
@@ -117,6 +122,9 @@ public class ConnectFour extends Game
 		}
 		while(keepScanning);
 		
+		// Skip a line to keep the interface easily readable
+		System.out.println();
+		
 		// Create the first player who's always human
 		this.players.add(new HumanPlayer(1, this));
 		
@@ -139,7 +147,7 @@ public class ConnectFour extends Game
 			break;
 			
 			case 5:
-				throw new RuntimeException("Loading a game hasn't been implemented yet.");
+				return this.loadGame();
 			
 			case 6:
 				return false;

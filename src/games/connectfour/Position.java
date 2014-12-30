@@ -11,12 +11,11 @@ import java.util.regex.Pattern;
  */
 public class Position extends games.Position
 {
-	/**
-	 * @brief Holds the serialization version number.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
+    /**
+     * @brief Holds the serialization version number.
+     */
+    private static final long serialVersionUID = 6116516082477823797L;
+    /**
 	 * @brief Holds the column's pattern.
 	 */
 	protected final static Pattern columnMatcher = Pattern.compile("^Column\\(([0-9]+)\\)$");

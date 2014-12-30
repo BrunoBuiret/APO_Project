@@ -11,12 +11,12 @@ import games.Position;
  */
 public class ChuckNorris extends AIPlayer
 {
-	/**
-	 * @brief Holds the serialization version number.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
+    /**
+     * @brief Holds the serialization version number.
+     */
+    private static final long serialVersionUID = 1319664328717854832L;
+
+    /**
 	 * @see games.Player.Player(int, Game)
 	 */
 	public ChuckNorris(int number, Game game)

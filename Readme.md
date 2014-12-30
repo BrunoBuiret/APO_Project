@@ -14,11 +14,44 @@ Windows 7 64 bits ainsi que sous Xubuntu 64 bits.
 
 # Paquetage de base
 Le paquetage de base, ici nommé `games`, contient un ensemble de classes pour commencer
-le développement d'un jeu de plateau. On peut y trouver :
+le développement d'un jeu de plateau. On peut y trouver, entre autres :
 
+* `games.Game` qui représente un jeu avec sa logique, c'est une classe abstraite dont on
+doit hériter afin d'implémenter les fonctions spécifiques à un jeu, par exemple, jouer ou
+vérifier si le jeu a été gagné ;
 * `games.Board` qui représente le plateau de jeu avec les fonctions d'accès nécessaires
-au placement des pions
-* ...
+au placement des pions ;
+* `games.Player` qui représente un joueur avec son numéro, c'est une classe abstraite dont
+on doit hériter afin de créer les intelligences artificielles ou les joueurs humains ;
+* `games.Position` qui représente une position en deux dimensions ;
+
+Il est possible de sauvegarder l'état d'un jeu durant une partie grâce à la sérialisation des
+classes. Une méthode générale est fournie, `games.Game.save()`, qu'il est possible de spécialiser
+en la redéfinissant dans la classe fille.
+
+    public class MyGame extends Game
+    {
+        public void save(String filename) throws IOException
+        {
+            super.save(filename);
+            
+            try
+            {
+                // Open a stream
+                ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(filename));
+                
+                // Write game specific data
+                
+                // Flush every data left and then close
+                stream.flush();
+                stream.close();
+            }
+            catch(IOException)
+            {
+                throw e;
+            }
+        }
+    }
 
 # Puissance 4
 
@@ -26,4 +59,5 @@ au placement des pions
 
 # Problèmes rencontrés
 ## BufferedReader
-Problème avec `BufferedReader.close()` qui fait parfois planter le programme.
+Problème avec `BufferedReader.close()` qui fait parfois planter le programme donc tous ces
+appels ont été supprimés.

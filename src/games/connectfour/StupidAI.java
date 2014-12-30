@@ -10,12 +10,12 @@ import games.RandomPlayer;
  */
 public class StupidAI extends RandomPlayer
 {
-	/**
-	 * @brief Holds the serialization version number.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
+    /**
+     * @brief Holds the serialization version number.
+     */
+    private static final long serialVersionUID = -4790271675890539765L;
+
+    /**
 	 * @brief Creates a new stupid AI for the connect four
 	 * @see games.Player.Player(int, Game)
 	 */
