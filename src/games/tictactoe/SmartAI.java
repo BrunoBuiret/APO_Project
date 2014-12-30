@@ -35,7 +35,7 @@ public class SmartAI extends AIPlayer
      */
     public Position getNextPosition()
     {
-        int[] minimaxResult = this.minimax(this, (Board) this.game.getBoard().clone(), 2);
+        int[] minimaxResult = this.minimax(this, (Board) this.game.getBoard().clone(), 2, Integer.MIN_VALUE, Integer.MAX_VALUE);
         return minimaxResult[1] != -1 && minimaxResult[2] != -1 ? new Position(minimaxResult[1], minimaxResult[2]) : null;
     }
     
@@ -49,7 +49,7 @@ public class SmartAI extends AIPlayer
      * @see http://www.ntu.edu.sg/home/ehchua/programming/java/JavaGame_TicTacToe_AI.html
      * @todo Implement the alpha / beta pruning.
      */
-    protected int[] minimax(Player player, Board board, int depth)
+    protected int[] minimax(Player player, Board board, int depth, int alpha, int beta)
     {
         // First, determine every available moves by going through the board
         ArrayList<Position> availableMoves = new ArrayList<Position>();
@@ -67,8 +67,7 @@ public class SmartAI extends AIPlayer
         
         // Then, initialize vars to memorize the best next position to play
         Player oppositePlayer = this.game.getPlayer(player.getNumber() % 2);
-        int bestScore = player.equals(this) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-        int currentScore;
+        int score;
         int bestColumn = -1;
         int bestRow = -1;
         
@@ -76,7 +75,8 @@ public class SmartAI extends AIPlayer
         {
             // We've reached the bottom of the tree or there is no other
             // available move
-            bestScore = this.evaluateScore(board);
+            score = this.evaluateScore(board);
+            return new int[]{score, bestColumn, bestRow};
         }
         else
         {
@@ -89,11 +89,11 @@ public class SmartAI extends AIPlayer
                 if(player.equals(this))
                 {
                     // Current player is the AI, it's the maximizing player
-                    currentScore = this.minimax(oppositePlayer, board, depth - 1)[0];
+                    score = this.minimax(oppositePlayer, board, depth - 1, alpha, beta)[0];
                     
-                    if(currentScore > bestScore)
+                    if(score > alpha)
                     {
-                        bestScore = currentScore;
+                        alpha = score;
                         bestColumn = p.getX();
                         bestRow = p.getY();
                     }
@@ -101,11 +101,11 @@ public class SmartAI extends AIPlayer
                 else
                 {
                     // Current player is the user, it's the minimizing player
-                    currentScore = this.minimax(this, board, depth - 1)[0];
+                    score = this.minimax(this, board, depth - 1, alpha, beta)[0];
                     
-                    if(currentScore < bestScore)
+                    if(score < beta)
                     {
-                        bestScore = currentScore;
+                        beta = score;
                         bestColumn = p.getX();
                         bestRow = p.getY();
                     }
@@ -113,10 +113,16 @@ public class SmartAI extends AIPlayer
                 
                 // Undo the move
                 board.setAt(p, null);
+                
+                // Alpha / Beta cut-off
+                if(alpha >= beta)
+                {
+                    break;
+                }
             }
         }
         
-        return new int[]{bestScore, bestColumn, bestRow};
+        return new int[]{player == this ? alpha : beta, bestColumn, bestRow};
     }
     
     /**
