@@ -438,7 +438,7 @@ public abstract class Game implements Serializable
      *             super.load(filename);
      *             
      *             // Open a stream
-     *             ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(filename));
+     *             ObjectInputStream stream = new ObjectInputStream(new FileInputStream(filename));
      *             
      *             // Load game specific data
      *             ...
