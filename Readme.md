@@ -25,34 +25,6 @@ au placement des pions ;
 on doit hériter afin de créer les intelligences artificielles ou les joueurs humains ;
 * `games.Position` qui représente une position en deux dimensions ;
 
-Il est possible de sauvegarder l'état d'un jeu durant une partie grâce à la sérialisation des
-classes. Une méthode générale est fournie, `games.Game.save()`, qu'il est possible de spécialiser
-en la redéfinissant dans la classe fille.
-
-    public class MyGame extends Game
-    {
-        public void save(String filename) throws IOException
-        {
-            super.save(filename);
-            
-            try
-            {
-                // Open a stream
-                ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(filename));
-                
-                // Write game specific data
-                
-                // Flush every data left and then close
-                stream.flush();
-                stream.close();
-            }
-            catch(IOException)
-            {
-                throw e;
-            }
-        }
-    }
-
 # Puissance 4
 
 # Morpion

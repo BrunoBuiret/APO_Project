@@ -16,6 +16,7 @@ public class HumanPlayer extends Player
      * @brief Holds the serialization version number.
      */
     private static final long serialVersionUID = 1260518489608118729L;
+    
     /**
      * @brief Holds a reference to a buffered reader for user input.
      */
@@ -57,8 +58,9 @@ public class HumanPlayer extends Player
      * @brief Overrides the standard `java.io.ObjectInputStream.readObject()`
      * method to create a new `java.io.BufferedReader`.
      * @param stream Reference to the stream used to read.
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException Thrown when a reading error occurs.
+     * @throws ClassNotFoundException Thrown when the serialized class doesn't
+     * match the existing definition.
      */
     private void readObject(final ObjectInputStream stream) throws IOException, ClassNotFoundException
     {

@@ -16,7 +16,7 @@ public class GameSaveMismatchException extends Exception
     /**
      * @brief Creates a new exception because a save file isn't for this kind of
      * game.
-     * @param message
+     * @param message Detail message.
      */
     public GameSaveMismatchException(String message)
     {

@@ -15,33 +15,34 @@ public class HumanPlayer extends games.HumanPlayer
      * @brief Holds the serialization version number.
      */
     private static final long serialVersionUID = 2282263430003162923L;
-
+    
     /**
-	 * @see games.HumanPlayer.HumanPlayer(int, Game)
-	 */
-	public HumanPlayer(int number, Game game)
-	{
-		super(number, game);
-	}
-	
-	/**
-	 * @brief Overrides the superclass method to ignore the line number.
-	 * @see games.HumanPlayer.getNextPosition()
-	 */
-	public Position getNextPosition()
-	{
-		Position p = null;
-		
-		try
-		{
-			System.out.print("Type which column you want to play [Column(column)]: ");
-			p = Position.parse(this.inputReader.readLine());
-		}
-		catch(IOException e)
-		{
-			return null;
-		}
-		
-		return p;
-	}
+     * @brief Creates a new human player fitted for the connect four.
+     * @see games.HumanPlayer.HumanPlayer(int, Game)
+     */
+    public HumanPlayer(int number, Game game)
+    {
+        super(number, game);
+    }
+    
+    /**
+     * @brief Overrides the superclass method to ignore the line number.
+     * @see games.HumanPlayer.getNextPosition()
+     */
+    public Position getNextPosition()
+    {
+        Position p = null;
+        
+        try
+        {
+            System.out.print("Type which column you want to play [Column(column)]: ");
+            p = Position.parse(this.inputReader.readLine());
+        }
+        catch(IOException e)
+        {
+            return null;
+        }
+        
+        return p;
+    }
 }

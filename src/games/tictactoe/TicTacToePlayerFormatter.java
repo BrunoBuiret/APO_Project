@@ -6,7 +6,8 @@ import games.PlayerFormatterInterface;
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
- * @brief This class is used with the Tic Tac Toe to represent the players on the board.
+ * @brief This class is used with the Tic Tac Toe to represent the players on
+ * the board.
  */
 public class TicTacToePlayerFormatter implements PlayerFormatterInterface
 {
@@ -26,35 +27,34 @@ public class TicTacToePlayerFormatter implements PlayerFormatterInterface
     public TicTacToePlayerFormatter()
     {
         if(
-                System.getProperty("os.name").toLowerCase().indexOf("nix") >= 0
-                ||
-                System.getProperty("os.name").toLowerCase().indexOf("nux") >= 0
-                ||
-                System.getProperty("os.name").toLowerCase().indexOf("aix") >= 0
-            )
-            {
-                this.isUnix = true;
-            }
-            else
-            {
-                this.isUnix = false;
-            }
-    }
-
-    /**
-	 * @brief Gets a char representation of a player for the tic tac toe.
-	 * @see games.PlayerFormatterInterface.getPlayerRepresentation(Player)
-	 * @todo Improve by determining if the OS is Windows or Linux to put the normal or better chars.
-	 */
-	public char getPlayerRepresentation(Player p)
-	{
-		if(this.isUnix)
+            System.getProperty("os.name").toLowerCase().indexOf("nix") >= 0
+            ||
+            System.getProperty("os.name").toLowerCase().indexOf("nux") >= 0
+            ||
+            System.getProperty("os.name").toLowerCase().indexOf("aix") >= 0
+        )
         {
-		    return p.getNumber() == 1 ? '✕' : '○';
+            this.isUnix = true;
+        }
+        else
+        {
+            this.isUnix = false;
+        }
+    }
+    
+    /**
+     * @brief Gets a char representation of a player for the tic tac toe.
+     * @see games.PlayerFormatterInterface.getPlayerRepresentation(Player)
+     */
+    public char getPlayerRepresentation(Player p)
+    {
+        if(this.isUnix)
+        {
+            return p.getNumber() == 1 ? '✕' : '○';
         }
         else
         {
             return p.getNumber() == 1 ? 'x' : 'o';
         }
-	}
+    }
 }

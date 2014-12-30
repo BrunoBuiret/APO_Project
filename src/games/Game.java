@@ -42,7 +42,7 @@ public abstract class Game implements Serializable
     protected Board board;
     
     /**
-     * @brief Holds a list of every played action.
+     * @brief Holds a list of every played move.
      */
     protected List<HistoryEntry> history;
     
@@ -76,12 +76,12 @@ public abstract class Game implements Serializable
      * @param position Reference to the position.
      * 
      * This method must be implemented by any class representing a game. It will
-     * contain the logic of an action being played.
+     * contain the logic of a move being played.
      */
     protected abstract void play(Player player, Position position);
     
     /**
-     * @brief Cancels the last played action of a game.
+     * @brief Cancels the last played move of a game.
      */
     protected void cancel()
     {
@@ -122,10 +122,12 @@ public abstract class Game implements Serializable
         
         if(this.history.size() == 0)
         {
+            // It's a new game
             playerIndex = 0;
         }
         else
         {
+            // A game was loaded
             playerIndex = (this.players.indexOf(this.history.get(this.history.size() - 1).getPlayer()) + 1) % this.players.size();
         }
         
@@ -141,8 +143,7 @@ public abstract class Game implements Serializable
             {
                 if(!(this.players.get(playerIndex) instanceof AIPlayer))
                 {
-                    // The current player is human, so ask them what they want
-                    // to do
+                    // The current player is human, so ask them what they want to do
                     boolean keepScanning = false;
                     int actionId = -1;
                     
@@ -202,7 +203,7 @@ public abstract class Game implements Serializable
                             }
                             else
                             {
-                                System.err.println("Invalid move.");
+                                System.err.println("Invalid move, try another one.");
                                 keepPlaying = true;
                             }
                         break;
@@ -210,16 +211,17 @@ public abstract class Game implements Serializable
                         case 2:
                             // Save the game
                             keepScanning = false;
+                            
                             try
                             {
                                 // Ask the user for a filename
-                                String filename = this.askFilename("Enter a filename", false);
+                                String filename = this.askFilename("Enter a filename (If it already exists, it will be overwritten)", false);
                                 
                                 // Save the current state of the game
                                 this.save(filename);
                                 
                                 // Inform the user
-                                System.out.println(String.format("Game was saved in \"%s\".", (new File(filename).getAbsolutePath())));
+                                System.out.println(String.format("Game was saved in \"%s\".", (new File(filename)).getAbsolutePath()));
                                 System.out.println();
                                 
                                 // And keep playing
@@ -233,7 +235,7 @@ public abstract class Game implements Serializable
                         break;
                         
                         case 3:
-                            // Quit the game
+                            // Quit the game without cheking anything
                             return;
                     }
                 }
@@ -277,7 +279,7 @@ public abstract class Game implements Serializable
                 System.out.println();
                 keepLooping = false;
             }
-            // Or if it game is a draw
+            // Or if the game is a draw
             else if(this.history.size() == this.board.getHeight() * this.board.getWidth())
             {
                 System.out.print(this.board);
@@ -371,33 +373,48 @@ public abstract class Game implements Serializable
      * cannot be created or when the stream cannot be written.
      * @warning If a file designated by `filename` already exists, it will be
      * overwritten.
+     * 
+     * This method will only save the basic data of a game, if you need more, you have to
+     * redefine this method. For example,
+     * 
+     *     public class MyGame extends Game
+     *     {
+     *         public void save(String filename) throws IOException
+     *         {
+     *             // Save generic game data
+     *             super.save(filename);
+     *             
+     *             // Open a stream
+     *             ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(filename));
+     *             
+     *             // Write game specific data
+     *             ...
+     *             
+     *             // Flush every data left and then close
+     *             stream.flush();
+     *             stream.close();
+     *         }
+     *     }
      */
     protected void save(String filename) throws IOException
     {
-        try
-        {
-            // Open a stream
-            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(filename));
-            
-            // Save the class name so as not to mistake games
-            stream.writeObject(this.getClass().getName());
-            // Save the name
-            stream.writeObject(this.name);
-            // Save the list of players
-            stream.writeObject(this.players);
-            // Save the board
-            stream.writeObject(this.board);
-            // Save the history
-            stream.writeObject(this.history);
-            
-            // Flush every data left and then close
-            stream.flush();
-            stream.close();
-        }
-        catch(IOException e)
-        {
-            throw e;
-        }
+        // Open a stream
+        ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(filename));
+        
+        // Save the class name so as not to mistake games
+        stream.writeObject(this.getClass().getName());
+        // Save the name
+        stream.writeObject(this.name);
+        // Save the list of players
+        stream.writeObject(this.players);
+        // Save the board
+        stream.writeObject(this.board);
+        // Save the history
+        stream.writeObject(this.history);
+        
+        // Flush every data left and then close
+        stream.flush();
+        stream.close();
     }
     
     /**
@@ -409,45 +426,55 @@ public abstract class Game implements Serializable
      * match the existing definition.
      * @throws GameSaveMismatchException Thrown when the save file doesn't match
      * the game.
+     * 
+     * This method will only load the basic data of a game, if you need more, you have to
+     * redefine this method. For example,
+     * 
+     *     public class MyGame extends Game
+     *     {
+     *         public void load(String filename) throws IOException
+     *         {
+     *             // Load generic game data
+     *             super.load(filename);
+     *             
+     *             // Open a stream
+     *             ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(filename));
+     *             
+     *             // Load game specific data
+     *             ...
+     *             
+     *             // Flush every data left and then close
+     *             stream.close();
+     *         }
+     *     }
      */
     protected void load(String filename) throws IOException, ClassNotFoundException, GameSaveMismatchException
     {
-        try
+        // Open a stream
+        ObjectInputStream stream = new ObjectInputStream(new FileInputStream(filename));
+        
+        // Load the class name
+        String className = (String) stream.readObject();
+        
+        if(className.equals(this.getClass().getName()))
         {
-            // Open a stream
-            ObjectInputStream stream = new ObjectInputStream(new FileInputStream(filename));
-            
-            // Load the class name
-            String className = (String) stream.readObject();
-            
-            if(className.equals(this.getClass().getName()))
-            {
-                // Load the name
-                this.name = (String) stream.readObject();
-                // Load the list of players
-                this.players = (List<Player>) stream.readObject();
-                // Load the board
-                this.board = (Board) stream.readObject();
-                // Load the history
-                this.history = (List<HistoryEntry>) stream.readObject();
-            }
-            else
-            {
-                stream.close();
-                throw new GameSaveMismatchException(String.format("This save isn't for %s but %s", className, this.getClass().getName()));
-            }
-            
-            // Close the stream
+            // Load the name
+            this.name = (String) stream.readObject();
+            // Load the list of players
+            this.players = (List<Player>) stream.readObject();
+            // Load the board
+            this.board = (Board) stream.readObject();
+            // Load the history
+            this.history = (List<HistoryEntry>) stream.readObject();
+        }
+        else
+        {
             stream.close();
+            throw new GameSaveMismatchException(String.format("This save isn't for %s but %s", className, this.getClass().getName()));
         }
-        catch(IOException e)
-        {
-            throw e;
-        }
-        catch(ClassNotFoundException e)
-        {
-            throw e;
-        }
+        
+        // Close the stream
+        stream.close();
     }
     
     /**
@@ -481,7 +508,7 @@ public abstract class Game implements Serializable
             return this.players.get(index);
         }
         
-        throw new InvalidParameterException("There are no players");
+        throw new InvalidParameterException("Invalid player index");
     }
     
     /**

@@ -45,6 +45,7 @@ public class Board implements Cloneable, Serializable
      */
     public Board(int width, int height, PlayerFormatterInterface formatter) throws InvalidParameterException
     {
+        // Check if the width is valid
         if(width > 0)
         {
             this.width = width;
@@ -54,6 +55,7 @@ public class Board implements Cloneable, Serializable
             throw new InvalidParameterException("A board's width cannot be null or negative.");
         }
         
+        // Check if the height is valid
         if(height > 0)
         {
             this.height = height;
@@ -63,8 +65,10 @@ public class Board implements Cloneable, Serializable
             throw new InvalidParameterException("A board's height cannot be null or negative.");
         }
         
+        // Create the board
         this.board = new Player[this.width][this.height];
         
+        // Initialize the board
         for(int x = 0; x < this.width; x++)
         {
             for(int y = 0; y < this.height; y++)
@@ -87,6 +91,7 @@ public class Board implements Cloneable, Serializable
     {
         this(width, height, formatter);
         
+        // Initialize the board with the history
         for(HistoryEntry e : history)
         {
             this.board[e.getPosition().getX()][e.getPosition().getY()] = e.getPlayer();

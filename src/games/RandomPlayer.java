@@ -13,6 +13,7 @@ public class RandomPlayer extends AIPlayer
      * @brief Holds the serialization version number.
      */
     private static final long serialVersionUID = -8429934431302248085L;
+    
     /**
      * @brief Reference to a random numbers generator.
      */
