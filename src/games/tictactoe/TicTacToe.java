@@ -3,16 +3,13 @@ package games.tictactoe;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.List;
 
 import games.Board;
 import games.Game;
-import games.HistoryEntry;
 import games.HumanPlayer;
 import games.Player;
-import games.Position;
 
 /**
  * @author Bruno Buiret (11202344)
@@ -35,23 +32,6 @@ public class TicTacToe extends Game
         super();
         this.name = "Tic Tac Toe";
         this.board = new Board(3, 3, new TicTacToePlayerFormatter());
-    }
-    
-    /**
-     * @brief Plays a position on the board.
-     * @see games.Game.play(Player, Position)
-     */
-    protected void play(Player player, Position position) throws InvalidParameterException
-    {
-        if(this.board.getAt(position) == null)
-        {
-            this.board.setAt(position, player);
-            this.history.add(new HistoryEntry(player, position));
-        }
-        else
-        {
-            throw new InvalidParameterException(String.format("%s already played at %s", player, position));
-        }
     }
     
     /**

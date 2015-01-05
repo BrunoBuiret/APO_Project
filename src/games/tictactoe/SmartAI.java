@@ -74,8 +74,7 @@ public class SmartAI extends AIPlayer
         {
             // We've reached the bottom of the tree or there is no other
             // available move
-            score = this.evaluateScore(board);
-            return new int[]{score, bestColumn, bestRow};
+            return new int[]{this.evaluateScore(board), bestColumn, bestRow};
         }
         else
         {
@@ -121,7 +120,7 @@ public class SmartAI extends AIPlayer
             }
         }
         
-        return new int[]{player == this ? alpha : beta, bestColumn, bestRow};
+        return new int[]{player.equals(this) ? alpha : beta, bestColumn, bestRow};
     }
     
     /**
@@ -147,12 +146,12 @@ public class SmartAI extends AIPlayer
     {
         int score = 0;
         
-        // Rows
+        // Columns
         score += this.evaluateCombination(b, 0, 0, 0, 1, 0, 2);
         score += this.evaluateCombination(b, 1, 0, 1, 1, 1, 2);
         score += this.evaluateCombination(b, 2, 0, 2, 1, 2, 2);
         
-        // Columns
+        // Rows
         score += this.evaluateCombination(b, 0, 0, 1, 0, 2, 0);
         score += this.evaluateCombination(b, 0, 1, 1, 1, 2, 1);
         score += this.evaluateCombination(b, 0, 2, 1, 2, 2, 2);

@@ -74,11 +74,19 @@ public abstract class Game implements Serializable
      * @brief Adds a move to a game.
      * @param player Reference to the player.
      * @param position Reference to the position.
-     * 
-     * This method must be implemented by any class representing a game. It will
-     * contain the logic of a move being played.
      */
-    protected abstract void play(Player player, Position position);
+    protected void play(Player player, Position position) throws InvalidParameterException
+    {
+        if(this.board.getAt(position) == null)
+        {
+            this.board.setAt(position, player);
+            this.history.add(new HistoryEntry(player, position));
+        }
+        else
+        {
+            throw new InvalidParameterException(String.format("%s already played at %s", player, position));
+        }
+    }
     
     /**
      * @brief Cancels the last played move of a game.
@@ -112,7 +120,8 @@ public abstract class Game implements Serializable
      * @brief Represents the main loop of the game.
      * 
      * This method handles if the user wants to keep playing, save the game or
-     * quit by first asking them that. Then, if they want to play,
+     * quit by first asking them that. Then, if they want to play, they are asked
+     * where they want to.
      */
     protected void loop()
     {

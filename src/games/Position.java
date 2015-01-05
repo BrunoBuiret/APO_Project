@@ -36,7 +36,7 @@ public class Position implements Serializable
      * @brief Creates a new position.
      * @param x Position's abscissa.
      * @param y Position's ordinate.
-     * @throws InvalidParameterException
+     * @throws InvalidParameterException Thrown when abscissa or ordinate aren't valid.
      */
     public Position(int x, int y) throws InvalidParameterException
     {

@@ -8,7 +8,7 @@ import games.Position;
 /**
  * @author Bruno Buiret (11202344)
  * @version 1.0
- * @brief This class represents an AI that can win in only three moves.
+ * @brief This class represents an AI that can win in only one move.
  */
 public class ChuckNorris extends AIPlayer
 {

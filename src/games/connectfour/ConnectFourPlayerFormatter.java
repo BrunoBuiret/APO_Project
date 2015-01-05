@@ -17,9 +17,14 @@ public class ConnectFourPlayerFormatter implements PlayerFormatterInterface
     private static final long serialVersionUID = 1790428708691284266L;
     
     /**
-     * @brief Holds a boolean indicating if the OS is Unix-like.
+     * @brief Holds the char representing the first player.
      */
-    protected final boolean isUnix;
+    protected final char player1Representation;
+    
+    /**
+     * @brief Holds the char representing the second player.
+     */
+    protected final char player2Representation;
     
     /**
      * @brief Creates a new formatter to use with the connect four.
@@ -34,11 +39,13 @@ public class ConnectFourPlayerFormatter implements PlayerFormatterInterface
             System.getProperty("os.name").toLowerCase().indexOf("aix") >= 0
         )
         {
-            this.isUnix = true;
+            this.player1Representation = '●';
+            this.player2Representation = '○';
         }
         else
         {
-            this.isUnix = false;
+            this.player1Representation = 'x';
+            this.player2Representation = 'o';
         }
     }
     
@@ -48,13 +55,6 @@ public class ConnectFourPlayerFormatter implements PlayerFormatterInterface
      */
     public char getPlayerRepresentation(Player p)
     {
-        if(this.isUnix)
-        {
-            return p.getNumber() == 1 ? '●' : '○';
-        }
-        else
-        {
-            return p.getNumber() == 1 ? 'x' : 'o';
-        }
+        return p.getNumber() == 1 ? this.player1Representation : this.player2Representation;
     }
 }

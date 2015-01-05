@@ -41,7 +41,7 @@ public class Board implements Cloneable, Serializable
      * @param width Board's width.
      * @param height Board's height.
      * @param formatter Reference to a formatter.
-     * @throws InvalidParameterException
+     * @throws InvalidParameterException Thrown when the width or the height aren't valid.
      */
     public Board(int width, int height, PlayerFormatterInterface formatter) throws InvalidParameterException
     {
@@ -130,7 +130,7 @@ public class Board implements Cloneable, Serializable
      * @param x Position's abscissa.
      * @param y Position's ordinate.
      * @return Reference to the player or `null`.
-     * @throws InvalidParameterException
+     * @throws InvalidParameterException Thrown when asking for an invalid position.
      */
     public Player getAt(int x, int y) throws InvalidParameterException
     {
@@ -179,7 +179,7 @@ public class Board implements Cloneable, Serializable
      * @param x Position's abscissa.
      * @param y Position's ordinate.
      * @param p Reference to the player.
-     * @throws InvalidParameterException
+     * @throws InvalidParameterException Thrown when asking for an invalid position.
      */
     public void setAt(int x, int y, Player p) throws InvalidParameterException
     {

@@ -38,6 +38,7 @@ public class ConnectFour extends Game
     
     /**
      * @brief Plays a position on the board.
+     * @throws InvalidParameterException Thrown when the column is already filled.
      * @see games.Game.play(Player, Position)
      * 
      * This method takes into account gravity by overriding the ordinate of the
@@ -240,6 +241,7 @@ public class ConnectFour extends Game
         System.out.println(" 4. New Human vs Chuck Norris");
         System.out.println(" 5. Load a game");
         System.out.println(" 6. Return");
+        // Skip item 3 because it hasn't been implemented yet
         List<Integer> possibleChoices = Arrays.asList(1, 2, 4, 5, 6);
         
         do
