@@ -457,7 +457,8 @@ public abstract class Game implements Serializable
      *         }
      *     }
      */
-    protected void load(String filename) throws IOException, ClassNotFoundException, GameSaveMismatchException
+    @SuppressWarnings("unchecked")
+	protected void load(String filename) throws IOException, ClassNotFoundException, GameSaveMismatchException
     {
         // Open a stream
         ObjectInputStream stream = new ObjectInputStream(new FileInputStream(filename));
